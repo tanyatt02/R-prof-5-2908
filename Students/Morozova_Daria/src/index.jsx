@@ -4,11 +4,13 @@ import ReactDom from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './layout/css/styles.css';
 
+import Comp from './components/comp/comp.jsx';
+
 const container = document.getElementById('app');
 
 ReactDom.render(
     <div>
-        <h2>Something from react</h2>
+        <Comp name="Abrbr"/>
     </div>,
     container
 )
