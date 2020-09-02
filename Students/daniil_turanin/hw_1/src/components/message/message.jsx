@@ -1,0 +1,11 @@
+import './style.css';
+
+import React from 'react';
+
+export default (props) => {
+	return (
+		<div>
+			{props.text}
+		</div>
+	)
+}
