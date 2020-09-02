@@ -1,16 +1,23 @@
-import React from 'react';
-import ReactDom from 'react-dom';
-
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './layout/css/styles.css';
+import MessageField from "./components/MessageField/MessageField.jsx";
+import ButtonComponent from "./components/ButtonComponent/ButtonComponent.jsx";
 
-import Comp from './components/comp/comp.jsx';
+function App() {
+  const [messages, addMessage] = useState(["Привет", "Как дела?"]);
+  console.log(messages);
+  return (
+    <>
+      <MessageField messages={messages} />
+      <ButtonComponent
+        onClick={(props) => {
+          addMessage([...messages, props]);
+        }}
+      />
+    </>
+  );
+}
 
-const container = document.getElementById('app');
-
-ReactDom.render(
-    <div>
-        <Comp name="Darth Vader"/>
-    </div>,
-    container
-)
+ReactDOM.render(<App />, document.getElementById("root"));
