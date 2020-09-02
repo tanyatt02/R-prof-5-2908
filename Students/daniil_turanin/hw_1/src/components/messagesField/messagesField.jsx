@@ -1,9 +1,10 @@
 import './style.css';
 import React from 'react';
-import message from '../message/message.jsx';
+import Message from '../message/message.jsx';
 
-export default (props) => {
+export default props => {
+	let { messages } = props;
 	return (
-		props.messages.map(message => <message text={ message } />)
+		props.messages.map(message => <Message text={ message } />)
 	)
 }

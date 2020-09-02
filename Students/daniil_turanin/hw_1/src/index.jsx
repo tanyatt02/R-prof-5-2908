@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDom from 'react-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './layout/css/styles.css';
 
-import messagesField from './components/messagesField/messagesField.jsx';
+import MessagesField from './components/messagesField/messagesField.jsx';
+import Button from './components/button/button.jsx';
+import DeleteBtn from './components/deleteBtn/deleteBtn.jsx';
 
-let messages = ["Hello", "I'm React"];
+
 const container = document.getElementById('app');
-/*
-const MessageComponent = (props) => <div>{props.text}</div>;
 
-const MessageField = (props) => {
-   return props.messages.map(message => <MessageComponent text={ message } />);
-};
-*/
+function App() {
+	const [messages, addMessage] = useState(["Hello", "I'm React"]);
+	return (
+		<div>
+			<MessagesField messages = { messages }/>
+			<Button onClick={props => {
+				addMessage([...messages, props]);
+			}}/>
+			<DeleteBtn onClick={() => {
+				messages.splice(messages.length - 1, 1);
+			}}/>
+		</div>
+	)
+}
 
 ReactDom.render(
-	<MessageField messages = { messages }/>,
+	<App />,
 	container
 )
