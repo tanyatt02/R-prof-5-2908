@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode development",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "crfull": "node utils/componentCreator/index.js --n",
+    "crless": "node utils/componentCreator/index.js --s --n"
   },
   "keywords": [],
   "author": "",
