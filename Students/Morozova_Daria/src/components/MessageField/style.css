@@ -5,3 +5,23 @@
     border-radius: 10px 10px 0 10px;
     border: 2px solid #B197B2;
 }
+
+.sendBtn {
+    width: 60px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-family: 'Harmattan', sans-serif;
+    font-size: 26px;
+    text-transform: lowercase;
+    color: #B197B2;
+}
+
+.sendBtn:focus {
+    outline: none;
+    border: none;
+}
+
+.sendBtn:active {
+    color: #9AA0B3;
+}

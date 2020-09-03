@@ -23,7 +23,7 @@
                             text: 'Privet!',
                         },
                         {
-                            sender: 'Vasya',
+                            sender: 'Ann',
                             text: 'Guten tag!',
                         }
                     ]
@@ -48,10 +48,9 @@
             componentDidUpdate() {
                 if (this.state.messages[this.state.messages.length-1].sender !== 'Bot') {
                     this.setState({
-                        text: '',
                         messages: [...this.state.messages, {
                                 sender: 'Bot',
-                                text: 'What you want from me?'
+                                text: 'What do you want from me?'
                             }
                         ]
                     })
@@ -76,7 +75,7 @@
                                 value = {this.state.text } 
                                 onChange={ this.handleChange }
                             />
-                            <button onClick = { this.sendMessage }>Send</button>
+                            <button className="sendBtn" onClick = { this.sendMessage }>Send</button>
                         </div>
                     </div>
                     
