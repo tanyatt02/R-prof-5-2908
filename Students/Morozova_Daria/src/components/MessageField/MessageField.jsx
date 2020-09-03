@@ -56,7 +56,7 @@
                     this.setState({
                         messages: [...this.state.messages, {
                                 sender: 'Bot',
-                                text: 'What do you want from me?'
+                                text: `${this.state.messages[this.state.messages.length-1].sender}, what do you want from me?`
                             }
                         ]
                     })
