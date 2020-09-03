@@ -9,6 +9,7 @@
                 super(props);
                 this.state = {
                     text: '',
+                    sender: '',
                     messages: [
                         {
                             sender: 'Vasya',
@@ -34,11 +35,16 @@
                 this.setState({ text: event.target.value });
             }
 
+            handleChangeSender = event => {
+                this.setState({ sender: event.target.value });
+            }
+
             sendMessage = () => {
                 this.setState({
                     text: '',
+                    sender: '',
                     messages: [...this.state.messages, {
-                            sender: this.props.name,
+                            sender: this.state.sender,
                             text: this.state.text
                         }
                     ]
@@ -69,12 +75,22 @@
                         <div>
                             { contentArray }
                         </div>
-                        <div className="controls d-flex">
+                        <div className="controls d-flex flex-column">
+
                             <input 
+                                placeholder="Name"
+                                className="inputName" type="text" 
+                                value = {this.state.sender } 
+                                onChange={ this.handleChangeSender }
+                            />
+
+                            <input 
+                            placeholder="Message"
                                 className="inputText" type="text" 
                                 value = {this.state.text } 
                                 onChange={ this.handleChange }
                             />
+                            
                             <button className="sendBtn" onClick = { this.sendMessage }>Send</button>
                         </div>
                     </div>
