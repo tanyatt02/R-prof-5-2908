@@ -1,4 +1,4 @@
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const path = require('path');
@@ -10,7 +10,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         publicPath: '',
-        filename: path.join('js', 'bandle.js')
+        filename: path.join('js', 'bundle.js')
     },
     target: 'web',
     module: {
@@ -27,12 +27,12 @@ module.exports = {
                     plugins: [
                         [
                             "@babel/plugin-proposal-class-properties",
-                            { "loose": true}
+                            { "loose": true }
                         ]
                     ]
+                    // preset: ["@babel/preset-env", "@babel/preset-react"]
                 }
             }
-
         ]
     },
     plugins: [
