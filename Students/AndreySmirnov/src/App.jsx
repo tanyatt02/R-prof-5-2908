@@ -1,16 +1,10 @@
 import React from 'react'
-import AddMessage from "./components/addMessage/AddMessage.jsx";
-import Messages from "./components/messages/Messages.jsx";
+import MessageField from "./components/messageField/MessageField.jsx";
 
-const App = ({dispatch, state}) => {
+const App = () => {
     return (
-        <div className='wrapper'>
-            <Messages messages={state.messages}/>
-            <AddMessage dispatch={dispatch}
-                        newMessageText={state.newMessageText}/>
-        </div>
+            <MessageField/>
     )
-
 }
 
 export default App
