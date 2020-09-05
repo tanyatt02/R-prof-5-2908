@@ -4,17 +4,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-     entry: {
-         main: path.resolve(__dirname, 'src', 'index.jsx')
-     },
+    entry: {
+        main: path.resolve(__dirname, 'src', 'index.jsx')
+    },
     output: {
         path: path.join(__dirname, 'dist'),
         publicPath: '',
-        filename:path.join('js', 'bundle.js')
+        filename: path.join('js', 'bundle.js')
     },
     target: 'web',
     module: {
-        rules:[
+        rules: [
             {
                 test: /\.css$/i,
                 use: [MiniCssExtractPlugin.loader, 'css-loader']
@@ -29,28 +29,25 @@ module.exports = {
                             "@babel/plugin-proposal-class-properties",
                             { "loose": true }
                         ]
-
                     ]
+                    // preset: ["@babel/preset-env", "@babel/preset-react"]
                 }
             }
-
         ]
     },
-    plugins:[
+    plugins: [
         new MiniCssExtractPlugin({
             filename: path.join('style', '[name].css'),
-            chunkFilename:'[id].css'
+            chunkFilename: '[id].css'
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.resolve(__dirname, 'public', 'index.html')
         })
-
     ],
-    devServer:{
+    devServer: {
         port: 3300,
         hot: true,
         open: false
-
     }
 }
