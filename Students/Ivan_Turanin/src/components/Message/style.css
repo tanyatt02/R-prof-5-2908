@@ -1,0 +1,22 @@
+.message {
+    
+    display: flex;
+}
+
+
+.message__rightSide {
+    text-align: right;
+    align-self: flex-end;
+    
+}
+
+.message__rightSide,
+.message__leftSide {
+    background-color: rgb(149, 167, 206);
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 18px;
+    margin: 5px;
+    max-width: 400px;
+}
+
