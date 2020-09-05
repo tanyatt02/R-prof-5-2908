@@ -1,0 +1,13 @@
+.messageField {
+    width: 500px;
+    border: 1px solid rgb(205, 209, 236);
+    border-radius: 25px;
+    background-color: #efefef;
+    padding: 40px 15px;
+    box-shadow: 0px 3px 16px -8px rgba(0, 0, 0, 0.9);
+}
+
+.controls {
+    margin-top: 35px;
+    width: 100%;
+}
