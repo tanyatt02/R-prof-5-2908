@@ -2,7 +2,7 @@ import './style.css';
 
 import React from 'react';
 
-import Message from '../message/message.jsx'
+import Message from '../message-test/message-test.jsx'
 
 export default class Button extends React.Component {
     state = {

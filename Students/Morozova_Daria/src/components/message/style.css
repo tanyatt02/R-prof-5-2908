@@ -1,9 +1,24 @@
-.normMsg {
-    width: 200px;
-    height: 70px;
-    background-color: #ebebeb;
+.msg {
+    min-width: 150px;
+    min-height: 60px;
+    background-color: #FFDFCA;
+    margin: 10px 0;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    border-radius: 10px 10px 10px 0;
+    border: 2px solid #B197B2;
+}
+
+.msgName {
+    font-family: 'Harmattan', sans-serif;
+    font-weight: 700;
     font-size: 30px;
-    text-align: center;
-    margin: 5px;
-    line-height: 70px;
+    line-height: 30px;
+    color: #BBAA9E;
+}
+
+.msgText {
+    margin: 0;
+    font-family: 'Harmattan', sans-serif;
+    font-size: 26px;
 }
