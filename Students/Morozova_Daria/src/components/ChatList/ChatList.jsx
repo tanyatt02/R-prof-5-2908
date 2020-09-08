@@ -59,7 +59,7 @@ export default class ChatList extends Component {
 
         return (
             <Fragment>
-                <div className="ChatList d-flex flex-column">
+                <div className="chatList d-flex flex-column">
 
                     { chatsArray }
                     <div>

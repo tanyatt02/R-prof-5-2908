@@ -19,7 +19,7 @@ export default function FloatingActionButtons(props) {
   const { send } = props;
   return (
     <div className={classes.root}>
-      <Fab color="primary" aria-label="add" onClick={ send }>
+      <Fab color="primary" aria-label="add" onClick={ send } >
         <SendIcon />
       </Fab>
     </div>

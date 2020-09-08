@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   avatar: {
     backgroundColor: blue[100],
     color: blue[600],
-  },
+  }
 });
 
 function SimpleDialog(props) {
@@ -88,7 +88,7 @@ export default function SimpleDialogDemo(props) {
     <div>
       {/* <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
       <br /> */}
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen} >
         Open new chat
       </Button>
       <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
