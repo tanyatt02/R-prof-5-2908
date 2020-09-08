@@ -1,28 +1,16 @@
 import React from 'react';
-import ReactDom from 'react-dom';
+import ReactDom from 'react-dom';	import ReactDom from 'react-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './layout/css/styles.css';
 
-import MessageField from "./components/MessageField/MessageField.jsx";
-import ButtonComponent from "./components/ButtonComponent/ButtonComponent.jsx";
+import Comp from './components/comp/comp.jsx';
 
+const container = document.getElementById('app');	
 
-
-
-function App() {
-    const [messages, addMessage] = useState(["Привет", "Как дела?"]);
-    console.log(messages);
-    return (
-      <>
-        <MessageField messages={messages} />
-        <ButtonComponent
-          onClick={(props) => {
-            addMessage([...messages, props]);
-          }}
-        />
-      </>
-    );
-  }
-  
-  ReactDOM.render(<App />, document.getElementById("root"));
+ReactDom.render(
+    <div>
+        <Comp name="Magistr Yoda"/>	function App() {
+    </div>,
+    container
+) 
