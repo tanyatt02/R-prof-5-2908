@@ -1,13 +1,16 @@
 import './style.css';
 import React, { Component, Fragment } from 'react';
-
+import { TextField, FloatingActionButton } from 'material-ui';
+import SendIcon from 'material-ui/svg-icons/content/send';
 import Message from '../Message/Message.jsx';
 
 export default class MessageField extends Component {
     constructor(props) {
         super(props);
+        this.textInput = React.createRef();
         this.state = {
             text: '',
+            sender: '',
             messages: [
                 {
                     sender: 'Darth Vader',
@@ -18,32 +21,14 @@ export default class MessageField extends Component {
                     text: 'I am your father'
                 },
                 {
-                    sender: null,
+                    sender: 'Петя Васечкин',
                     text: 'Hello'
                 },
                 {
-                    sender: null,
+                    sender: 'Вася Петечкин',
                     text: 'Nooooooo'
                 }
             ]
-            // messages: {
-            //     1: {
-            //         sender: 'Darth Vader',
-            //         text: 'Hello'
-            //     },
-            //     2: {
-            //         sender: 'Darth Vader',
-            //         text: 'I am your father'
-            //     },
-            //     3: {
-            //         sender: null,
-            //         text: 'Hello'
-            //     },
-            //     4: {
-            //         sender: null,
-            //         text: 'Nooooooo'
-            //     }
-            // }
         }
     }
 
@@ -52,11 +37,27 @@ export default class MessageField extends Component {
         // this.state.text = evt.target.value // NO REACTIVITY
     }
 
+    handleSender = evt => {
+        this.setState({ sender: evt.target.value });
+    }
+
+    handleKeyUp = (event, message) => {
+        if (event.keyCode === 13) { // Отправка сообщений по клавише Enter
+            this.sendMessage(message)
+        }
+     };
+    
+    // Ставим фокус на <input> при монтировании компонента
+    componentDidMount() {
+        this.textInput.current.focus();
+    }
+
     sendMessage = () => {
         this.setState({
             text: '',
+            sender: '',
             messages: [...this.state.messages, {
-                sender: this.props.name,
+                sender: this.state.sender,
                 text: this.state.text
             }
             ]
@@ -64,18 +65,27 @@ export default class MessageField extends Component {
     }
 
     componentDidUpdate() {
-        //сделать, чтобы нам отвечал бот
-        if (this.state.messages.length % 2 === 1) {
-            setTimeout(() => {
-                this.setState({
-                    messages: [...this.state.messages, {
-                        sender: 'bot',
-                        text: 'I am a Bot and I know it!'
-                    }]
-                })
-            }, 1000)
+        if (this.state.messages[this.state.messages.length - 1].sender === 'Me') {
+            setTimeout(() =>
+                    this.setState({
+                        messages: [ ...this.state.messages, {text: 'Не приставай ко мне, я робот!', sender: 'bot'} ] }),
+                1000);
         }
     }
+ 
+    //     //Метод для ответа Бота
+    // componentDidUpdate() {
+    //     if (this.state.messages.length % 2 === 1) {
+    //         setTimeout(() => {
+    //             this.setState({
+    //                 messages: [...this.state.messages, {
+    //                     sender: 'bot',
+    //                     text: `${this.state.messages[this.state.messages.length-1].sender}, I am a Bot and I know it!`
+    //                 }]
+    //             })
+    //         }, 1000)
+    //     }
+    // }
 
     render() {
         let { messages } = this.state;
@@ -85,23 +95,33 @@ export default class MessageField extends Component {
             return <Message text={text} sender={sender} key={index} />
         });
 
-        // let contentArray = Object.keys(messages).map(key => {
-        //     let { text, sender } = messages[key];
-        //     return <Message text = { text } sender = { sender } key = { key }/>
-        // });
-
         return (
-            <div className="d-flex flex-column">
-                <div>
+            <div className="layout">
+                <div className="message-field">
                     {contentArray}
                 </div>
-                <div className="controls d-flex">
-                    <input
+                <div className="d-flex flex-column">
+                    {/* <TextField
+                        ref={ this.textInput }
+                        name="input"
+                        value="Me"
+                        fullWidth={ true }
+                        hintText="Sender's Name"
+                        type="text"
+                        value={this.state.sender}
+                        onChange={this.handleSender}
+                    /> */}
+                    <TextField
+                        id="standard-basic"
+                        ref={ this.textInput }
+                        name="input"
+                        hintText="Message"
                         type="text"
                         value={this.state.text}
                         onChange={this.handleChange}
-                    />
-                    <button onClick={this.sendMessage}>Send</button>
+                        onKeyUp={ (event) => this.handleKeyUp(event, messages) }
+                    /> 
+                    <FloatingActionButton mini={true} style={{ boxShadow: 'none' }} onClick={this.sendMessage}><SendIcon /></FloatingActionButton>
                 </div>
             </div>
         )
