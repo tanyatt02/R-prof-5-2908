@@ -60,7 +60,7 @@
                     this.setState({
                         messages: [...this.state.messages, {
                                 sender: 'Bot',
-                                text: `${this.state.messages[this.state.messages.length-1].sender}, what do you want from me?`
+                                text: `${this.state.messages[this.state.messages.length-1].sender !== '' ? this.state.messages[this.state.messages.length-1].sender : 'Anonim'}, what do you want from me?`
                             }
                         ]
                     })
@@ -76,7 +76,7 @@
         
                 return (
                     <div className="d-flex flex-column">
-                        <div>
+                        <div className="d-flex flex-column content-wrp">
                             { contentArray }
                         </div>
                         <div className="controls d-flex flex-column">

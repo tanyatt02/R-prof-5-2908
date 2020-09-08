@@ -1,5 +1,6 @@
 .msg {
-    min-width: 150px;
+    min-width: 350px;
+    max-width: 350px;
     min-height: 60px;
     background-color: #FFDFCA;
     margin: 10px 0;
