@@ -43,7 +43,7 @@ export default class MessagesField extends Component {
 						text: 'Hello, I,m ROBOT'
 					}]
 				})
-			}, 1000)
+			}, 2000)
 		}
 	}
 
