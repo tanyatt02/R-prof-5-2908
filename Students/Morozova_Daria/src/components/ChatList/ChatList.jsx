@@ -29,8 +29,25 @@ export default class ChatList extends Component {
                     name: 'Admin',
                     messages: '102 messages',
                 },
-            ]
+            ],
+            addFunc: this.addChat.bind(this),
         }
+        
+    }
+
+    addChat = (name) => {
+        this.setState({
+            chats: [...this.state.chats, {
+                    name: name,
+                    messages: '0 messages',
+                }
+            ],
+        });
+        console.log('chat was added to the list');
+    }
+
+    componentDidUpdate() {
+        this.render();
     }
 
     render() {
@@ -46,7 +63,7 @@ export default class ChatList extends Component {
 
                     { chatsArray }
                     <div>
-                        <ChatsDialog />
+                        <ChatsDialog addFunction={ this.state.addFunc } />
                     </div>
                 </div>
             </Fragment>

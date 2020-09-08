@@ -15,7 +15,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
 
-const emails = ['username@gmail.com', 'user02@gmail.com', 'lol@kek.cheburek'];
+const emails = ['Elisabeth', 'Marco', 'Michel', 'Joseph', 'Mirinda'];
 const useStyles = makeStyles({
   avatar: {
     backgroundColor: blue[100],
@@ -37,7 +37,7 @@ function SimpleDialog(props) {
 
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+      <DialogTitle id="simple-dialog-title">Choose friend to start chat</DialogTitle>
       <List>
         {emails.map((email) => (
           <ListItem button onClick={() => handleListItemClick(email)} key={email}>
@@ -56,7 +56,7 @@ function SimpleDialog(props) {
               <AddIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Add account" />
+          <ListItemText primary="Add friend" />
         </ListItem>
       </List>
     </Dialog>
@@ -69,7 +69,8 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
-export default function SimpleDialogDemo() {
+export default function SimpleDialogDemo(props) {
+  const { addFunction } = props;
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
@@ -80,14 +81,15 @@ export default function SimpleDialogDemo() {
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
+    addFunction(value);
   };
 
   return (
     <div>
-      <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
-      <br />
+      {/* <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
+      <br /> */}
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open simple dialog
+        Open new chat
       </Button>
       <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
     </div>
