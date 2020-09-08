@@ -15,11 +15,10 @@ const container = document.getElementById('app');
 ReactDom.render(
     <StylesProvider>
         <div className="d-flex w-100 justify-content-center">
-            <div>
+            <div className="chatList-wrp">
                 <ChatList />
             </div>
-            <div>
-                <Comp name="Abrbr"/>                
+            <div className="messages-wrp">
                 <MessageField name="Rick"/>
             </div>
         </div>

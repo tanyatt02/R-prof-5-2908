@@ -2,6 +2,10 @@
         import './style.css';
         import React, { Component, Fragment } from 'react';
 
+        import {TextField} from '@material-ui/core';
+        import FloatingActionButton from '../FloatingButton/FloatingButton.jsx';
+       
+
         import Message from '../Message/Message.jsx';
 
         export default class MessageField extends Component {
@@ -27,7 +31,8 @@
                             sender: 'Ann',
                             text: 'Guten tag!',
                         }
-                    ]
+                    ],
+                    sendFunc: this.sendMessage.bind(this),
                 }
             }
 
@@ -75,13 +80,27 @@
                             });
         
                 return (
-                    <div className="d-flex flex-column">
+                    <div className="d-flex flex-column layout">
                         <div className="d-flex flex-column content-wrp">
                             { contentArray }
                         </div>
-                        <div className="controls d-flex flex-column">
+                        <div className="controls d-flex justify-content-end align-items-baseline"
+                             style={ {width: '100%', display: 'flex'} }
+                        >
+                            <TextField
+                                name="input"
+                                fullWidth={ true }
+                                placeholder="Type your message here"
+                                style={ {fontSize: '22px', margin: '0 0 20px 0', width: '80%'} }
+                                onChange={ this.handleChange }
+                                onKeyUp={ this.handleChange }
+                                value={ this.state.text }
+                            />
 
-                            <input 
+                            <FloatingActionButton
+                                send={ this.state.sendFunc }
+                            ></FloatingActionButton>
+                            {/* <input 
                                 placeholder="Name"
                                 className="inputName" type="text" 
                                 value = {this.state.sender } 
@@ -96,7 +115,7 @@
                                 onKeyUp={ this.handleChange }
                             />
                             
-                            <button className="sendBtn" onClick = { this.sendMessage }>Send</button>
+                            <button className="sendBtn" onClick = { this.sendMessage }>Send</button> */}
                         </div>
                     </div>
                     
