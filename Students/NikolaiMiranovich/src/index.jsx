@@ -6,11 +6,11 @@ import './layout/css/styles.css';
 
 import Comp from './components/comp/comp.jsx';
 
-const container = document.getElementById('app');	
+const container = document.getElementById('app');
 
 ReactDom.render(
     <div>
-        <Comp name="Magistr Yoda"/>	function App() {
+        <Comp name="Magistr Yoda"/>
     </div>,
     container
 ) 
