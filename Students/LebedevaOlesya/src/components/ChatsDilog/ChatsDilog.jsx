@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
+import Fab from '@material-ui/core/Fab';
+import NavigationIcon from '@material-ui/icons/Navigation';
 import Avatar from '@material-ui/core/Avatar';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -13,12 +15,22 @@ import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
+import { createMuiTheme } from '@material-ui/core/styles';
+import cyan from '@material-ui/core/colors/cyan';
+import { cyan600 } from 'material-ui/styles/colors';
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
+
+const theme = createMuiTheme({
+  palette: {
+    primary: cyan,
+  },
+});
+
+const chats = ['The Best Chat', 'Looser\'s Chat', 'Brother\'s Chat'];
 const useStyles = makeStyles({
   avatar: {
-    backgroundColor: blue[100],
-    color: blue[600],
+    backgroundColor: cyan[100],
+    color: cyan[600],
   },
   testClass: {
     fontSize: '10em',
@@ -39,9 +51,9 @@ function SimpleDialog(props) {
 
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+      <DialogTitle id="simple-dialog-title">Change the Chat</DialogTitle>
       <List>
-        {emails.map((email) => (
+        {chats.map((email) => (
           <ListItem button onClick={() => handleListItemClick(email)} key={email}>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
@@ -58,7 +70,7 @@ function SimpleDialog(props) {
               <AddIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Add account" />
+          <ListItemText primary="Add chat" />
         </ListItem>
       </List>
     </Dialog>
@@ -73,7 +85,7 @@ SimpleDialog.propTypes = {
 
 export default function SimpleDialogDemo() {
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+  const [selectedValue, setSelectedValue] = React.useState(chats[1]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -86,11 +98,11 @@ export default function SimpleDialogDemo() {
 
   return (
     <div>
-      <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
+      <Typography variant="subtitle1">Current Chat: {selectedValue}</Typography>
       <br />
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open simple dialog
-      </Button>
+      <Fab variant="extended" color="primary" onClick={handleClickOpen}>
+        <NavigationIcon />Open Chat's List
+      </Fab>
       <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
     </div>
   );

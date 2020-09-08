@@ -1,6 +1,7 @@
 import './style.css';
 import React, { Component, Fragment } from 'react';
 import { TextField, FloatingActionButton } from 'material-ui';
+import Button from '@material-ui/core/Button';
 import SendIcon from 'material-ui/svg-icons/content/send';
 import Message from '../Message/Message.jsx';
 
@@ -68,7 +69,7 @@ export default class MessageField extends Component {
         if (this.state.messages[this.state.messages.length - 1].sender === 'Me') {
             setTimeout(() =>
                     this.setState({
-                        messages: [ ...this.state.messages, {text: 'Не приставай ко мне, я робот!', sender: 'bot'} ] }),
+                        messages: [ ...this.state.messages, '' ] }),
                 1000);
         }
     }
@@ -96,32 +97,32 @@ export default class MessageField extends Component {
         });
 
         return (
-            <div className="layout">
+            <div className="layout-msg-field col-9">
                 <div className="message-field">
                     {contentArray}
-                </div>
-                <div className="d-flex flex-column">
-                    {/* <TextField
-                        ref={ this.textInput }
-                        name="input"
-                        value="Me"
-                        fullWidth={ true }
-                        hintText="Sender's Name"
-                        type="text"
-                        value={this.state.sender}
-                        onChange={this.handleSender}
-                    /> */}
-                    <TextField
-                        id="standard-basic"
-                        ref={ this.textInput }
-                        name="input"
-                        hintText="Message"
-                        type="text"
-                        value={this.state.text}
-                        onChange={this.handleChange}
-                        onKeyUp={ (event) => this.handleKeyUp(event, messages) }
-                    /> 
-                    <FloatingActionButton mini={true} style={{ boxShadow: 'none' }} onClick={this.sendMessage}><SendIcon /></FloatingActionButton>
+                    <div className="d-flex pt-3 align-items-center align-self-end">
+                        {/* <TextField
+                            ref={ this.textInput }
+                            name="input"
+                            value="Me"
+                            fullWidth={ true }
+                            hintText="Sender's Name"
+                            type="text"
+                            value={this.state.sender}
+                            onChange={this.handleSender}
+                        /> */}
+                        <TextField
+                            id="input"
+                            ref={ this.textInput }
+                            name="input"
+                            hintText="Message"
+                            type="text"
+                            value={this.state.text}
+                            onChange={this.handleChange}
+                            onKeyUp={ (event) => this.handleKeyUp(event, messages) }
+                        /> 
+                        <FloatingActionButton mini={true} style={{ boxShadow: 'none'}} onClick={this.sendMessage}><SendIcon /></FloatingActionButton>
+                    </div>
                 </div>
             </div>
         )

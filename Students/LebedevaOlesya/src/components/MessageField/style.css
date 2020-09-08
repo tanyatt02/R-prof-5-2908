@@ -1,20 +1,35 @@
 .message-field {
     display: flex;
     flex-direction: column;
-    background-color: #e2e2e2;
-    height: 50%;
+    /* height: 50%; */
     width: 100%;
     padding: 20px;
-    overflow-y: scroll;
+    border: 1px solid #eda410;
+    border-right: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    margin: 20px;
+    background-color: white;
+    /* overflow-y: scroll; */
 }
 
-.layout {
+.layout-msg-field {
     height: 100%;
-    width: 50%;
-    margin: auto;
+    width: 100%;
+    margin: 0;
+    padding: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
- } 
+}
 
+.input hr {
+    border-top: none rgb(224, 224, 224); 
+    border-left: none rgb(224, 224, 224); 
+    border-right: none rgb(224, 224, 224); 
+    border-bottom: 1px solid rgb(247,204,114,0.24);
+    transition: height 200ms cubic-bezier(47,204,114,0.24) 0ms;
+}
+ /* .send-btn {
+     display: block !important;
+ } */

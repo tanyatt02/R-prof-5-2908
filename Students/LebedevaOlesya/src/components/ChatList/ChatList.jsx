@@ -1,6 +1,8 @@
 import './style.css';
 import React, { Component, Fragment } from 'react';
-import ChatsDilog from '../ChatsDilog/ChatsDilog.jsx'
+import ChatsDilog from '../ChatsDilog/ChatsDilog.jsx';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
         
         
 export default class ChatList extends Component {
@@ -16,12 +18,12 @@ export default class ChatList extends Component {
 
         return (
             <Fragment>
-                <div className="ChatList d-flex flex-column">
+                <Box className="ChatList d-flex flex-column col-3" color="primary.contrastText">
                     {/* chat-list */}
                     <div>
                         <ChatsDilog />
                     </div>
-                </div>
+                </Box>
             </Fragment>
         )
     }
