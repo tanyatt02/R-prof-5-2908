@@ -32,7 +32,11 @@
             }
 
             handleChange = event => {
-                this.setState({ text: event.target.value });
+                if (event.keyCode !== 13) {
+                    this.setState({ text: event.target.value });
+                } else {
+                    this.sendMessage();
+                }                
             }
 
             handleChangeSender = event => {
@@ -89,6 +93,7 @@
                                 className="inputText" type="text" 
                                 value = {this.state.text } 
                                 onChange={ this.handleChange }
+                                onKeyUp={ this.handleChange }
                             />
                             
                             <button className="sendBtn" onClick = { this.sendMessage }>Send</button>
