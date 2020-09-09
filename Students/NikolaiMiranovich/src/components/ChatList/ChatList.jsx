@@ -17,7 +17,7 @@
         
                 return (
                     <Fragment>
-                        <div className="ChatList d-flex flex-column">
+                        <div>
                             {/* chat-list */}
                             <div>
                                 <ChatsDialog />

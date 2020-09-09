@@ -1,1 +1,4 @@
-.Header {}
+.Header {
+    height: 50px;
+    background-color: rgba(67, 230, 167, 0.459);
+}
