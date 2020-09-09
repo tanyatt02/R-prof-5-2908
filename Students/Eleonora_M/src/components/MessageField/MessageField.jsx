@@ -1,4 +1,4 @@
-
+        
         import './style.css';
         import React, { Component, Fragment } from 'react';
 
@@ -9,14 +9,13 @@
                 super(props);
                 this.state = {
                     text: '',
-                   
                     messages: [
                         {
                             sender: 'Eleonora',
                             text: 'Hello'
                         },
                         {
-                            sender: 'Valeri',
+                            sender: 'Bot',
                             text: 'Hi'
                             
                         },
@@ -26,17 +25,39 @@
                             
                         },
                         {
-                            sender: 'Valeri',
+                            sender: 'Bot',
                             text: 'fine'
                         }
                     ]
-                   
+                    // messages: {
+                    //     1: {
+                    //         sender: 'Darth Vader',
+                    //         text: 'Hello'
+                    //     },
+                    //     2: {
+                    //         sender: 'Darth Vader',
+                    //         text: 'I am your father'
+                    //     },
+                    //     3: {
+                    //         sender: null,
+                    //         text: 'Hello'
+                    //     },
+                    //     4: {
+                    //         sender: null,
+                    //         text: 'Nooooooo'
+                    //     }
+                    // }
                 }
             }
 
             handleChange = evt => {
-                this.setState({ text: evt.target.value });
-               
+                if (evt.keyCode !== 13) {
+                    this.setState({ text: evt.target.value });
+                } else {
+                    this.sendMessage();
+                }
+                
+                // this.state.text = evt.target.value // NO REACTIVITY
             }
 
             sendMessage = () => {
@@ -51,16 +72,7 @@
             }
 
             componentDidUpdate() {
-                if (this.state.messages.length % 2 === 1) {
-                    setTimeout(() =>
-                    this.setState({
-                        messages: [...this.state.messages,  {
-                            sender: "evm", 
-                            text: `${this.state.messages[this.state.messages.length-1].sender}. Не приставай ко мне, я робот!`
-                        }]
-                    }),
-                    1000);
-                }
+                //сделать, чтобы нам отвечал бот
             }
 
             render() {
@@ -71,20 +83,25 @@
                     return <Message text = { text } sender = { sender } key = { index }/>
                 });
 
-               
+                // let contentArray = Object.keys(messages).map(key => {
+                //     let { text, sender } = messages[key];
+                //     return <Message text = { text } sender = { sender } key = { key }/>
+                // });
         
                 return (
-                    <div className="d-flex flex-column">
-                        <div>
+                    <div className ="layout">
+                        <div className="Msg_Field">
                             { contentArray }
                         </div>
-                        <div className="controls d-flex">
+                        <div className ="message-field controls d-flex" >
                             <input 
                                 type="text" 
                                 value = { this.state.text }
                                 onChange = { this.handleChange }
+                                onKeyUp = { this.handleChange }
                             />
-                            <button className="send_Btn" onClick = { this.sendMessage }>Send</button>
+                            
+                            <button className="send_Btn" onClick = { this.sendMessage }>Отправить сообщение</button>
                         </div>
                     </div>
                 )
