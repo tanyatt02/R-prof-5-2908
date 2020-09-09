@@ -28,3 +28,7 @@
 .sendBtn:active {
     color: #9AA0B3;
 }
+
+.content-wrp {
+    width: 700px;
+}
