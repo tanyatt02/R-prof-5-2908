@@ -15,25 +15,12 @@
         
             render() {
                 // let { some } = this.state;
-        
                 return (
                     <div className="Layout d-flex row">
                         <Header />
                         <ChatList />
                         <MessageField />
                     </div>
-
-                    // <Fragment>
-                    //     <div className="d-flex">
-                    //         <Header />
-                    //     </div>
-                    //     <div className="d-flex col-4">
-                    //         <ChatList />
-                    //     </div>
-                    //     <div className="d-flex col-8">
-                    //         <MessageField />
-                    //     </div>
-                    // </Fragment>
                 )
             }
         }

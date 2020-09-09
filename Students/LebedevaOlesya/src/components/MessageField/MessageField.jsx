@@ -1,7 +1,7 @@
 import './style.css';
 import React, { Component, Fragment } from 'react';
 import { TextField, FloatingActionButton } from 'material-ui';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import SendIcon from 'material-ui/svg-icons/content/send';
 import Message from '../Message/Message.jsx';
 
@@ -11,7 +11,7 @@ export default class MessageField extends Component {
         this.textInput = React.createRef();
         this.state = {
             text: '',
-            sender: '',
+            // sender: '',
             messages: [
                 {
                     sender: 'Darth Vader',
@@ -56,24 +56,14 @@ export default class MessageField extends Component {
     sendMessage = () => {
         this.setState({
             text: '',
-            sender: '',
+            // sender: '',
             messages: [...this.state.messages, {
-                sender: this.state.sender,
+                sender: 'Me',
                 text: this.state.text
-            }
-            ]
+            }]
         });
     }
 
-    componentDidUpdate() {
-        if (this.state.messages[this.state.messages.length - 1].sender === 'Me') {
-            setTimeout(() =>
-                    this.setState({
-                        messages: [ ...this.state.messages, '' ] }),
-                1000);
-        }
-    }
- 
     //     //Метод для ответа Бота
     // componentDidUpdate() {
     //     if (this.state.messages.length % 2 === 1) {
@@ -121,7 +111,10 @@ export default class MessageField extends Component {
                             onChange={this.handleChange}
                             onKeyUp={ (event) => this.handleKeyUp(event, messages) }
                         /> 
-                        <FloatingActionButton mini={true} style={{ boxShadow: 'none'}} onClick={this.sendMessage}><SendIcon /></FloatingActionButton>
+                        <FloatingActionButton 
+                            mini={true} style={{ boxShadow: 'none'}} onClick={this.sendMessage}>
+                            <SendIcon />
+                        </FloatingActionButton>
                     </div>
                 </div>
             </div>

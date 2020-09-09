@@ -14,11 +14,9 @@ import Dialog from '@material-ui/core/Dialog';
 import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
-import { blue } from '@material-ui/core/colors';
+// import { blue } from '@material-ui/core/colors';
 import { createMuiTheme } from '@material-ui/core/styles';
 import cyan from '@material-ui/core/colors/cyan';
-import { cyan600 } from 'material-ui/styles/colors';
-
 
 const theme = createMuiTheme({
   palette: {
