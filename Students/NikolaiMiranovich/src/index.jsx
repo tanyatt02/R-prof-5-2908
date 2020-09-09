@@ -13,4 +13,4 @@ ReactDom.render(
         <Comp name="Magistr Yoda"/>
     </div>,
     container
-) 
+)
