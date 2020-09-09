@@ -1,11 +1,18 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './layout/css/styles.css';
-import MessageField from "./components/MessageField/MessageField.jsx";
+import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
+
+import Chat from "./components/Chat/Chat.jsx";
+
+/*console.log(`User name : ${this.props.userName}`);*/
+
+
 
 ReactDom.render (
-    <MessageField />,
+    <StylesProvider>
+        <Chat />
+    </StylesProvider>,
     document.querySelector('.container')
 )
