@@ -1,13 +1,16 @@
 import './style.css';
 import React, { Component, Fragment } from 'react';
 
+import { TextField } from '@material-ui/core';
+import SendIcon from '@material-ui/icons/Send';
 import Message from '../Message/Message.jsx';
 
 export default class MessageField extends Component {
     constructor(props) {
         super(props);
+        this.textInput = React.createRef();
         this.state = {
-            text: '',
+            input: '',
             messages: [
                 {
                     sender: 'Magistr Yoda',
@@ -29,14 +32,27 @@ export default class MessageField extends Component {
         }
     }
 
+    componentDidMount() {
+        this.textInput.current.focus();
+    }
+
+    // handleClick = (message) => {
+    //     this.sendMessage(message)
+    // }
+
     handleChange = evt => {
-        this.setState({ text: evt.target.value });
-        // this.state.text = evt.target.value // NO REACTIVITY
+        if (evt.keyCode !==13) {
+            this.setState({ text: evt.target.value });
+        } else {
+            this.sendMessage();
+        }
+            // this.state.text = evt.target.value // NO REACTIVITY
     }
 
     sendMessage = () => {
         this.setState({ 
-            text: '',
+            text:'',
+            input: '',
             messages: [...this.state.messages, {
                     sender: this.props.name,
                     text: this.state.text
@@ -74,12 +90,18 @@ export default class MessageField extends Component {
                     { contentArray }
                 </div>
                 <div className="controls d-flex">
-                    <input 
-                        type="text" 
+                    <TextField 
+                        ref={ this.textInput }
+                        type="text"
+                        name="input"
+                        fullWidth={ true }
+                        hintText="Введите сообщение"
+                        style={ { fontSize: '22px' } }
                         value = { this.state.text }
                         onChange = { this.handleChange }
+                        onKeyUp = { (evt) => this.handleChange(evt, this.state.input) }
                     />
-                    <button onClick = { this.sendMessage }>Send</button>
+                    <button onClick = { () => this.sendMessage(this.state.input) }><SendIcon /></button>
                 </div>
             </div>
         )
