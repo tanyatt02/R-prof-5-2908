@@ -4,18 +4,21 @@ import PropTypes from "prop-types";
 import ChatList from '../ChatList/ChatList.jsx';
 import MessageField from '../MessageField/MessageField.jsx';
 import Header from '../Header/Header.jsx';
+import './style.css';
 
 export default  class Layout extends React.Component {
     render() {
       return (
-        <div>
+        <div className="layout">
           <Header />
-          <div className="height=30%">
+          <div className="layout-wrp">
+          <div className="chatList-wrp">
             <ChatList />
           </div>
-          <div className="height=70%">
+          <div className="messageField-wrp">
             <MessageField />
           </div>
+        </div>
         </div>
       )
     }

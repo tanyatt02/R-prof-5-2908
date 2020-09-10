@@ -86,10 +86,10 @@ export default class MessageField extends Component {
 
         return (
             <div className="layout">
-                <div className="d-flex flex-column message-field">
+                <div className="message-field">
                     { contentArray }
                 </div>
-                <div className="d-flex">
+                <div className="d-flex width-100%">
                     <TextField 
                         ref={ this.textInput }
                         type="text"

@@ -3,6 +3,8 @@
         import React, { Component, Fragment } from 'react';
         
         import ChatsDialog from '../ChatsDialog/ChatsDialog.jsx';
+        import List from '@material-ui/core/List';
+        import ListItemText from '@material-ui/core/ListItemText';
 
         export default class ChatList extends Component {
             constructor(props) {
@@ -16,14 +18,17 @@
                 // let { some } = this.state;
         
                 return (
-                    <Fragment>
-                        <div>
-                            {/* chat-list */}
-                            <div>
-                                <ChatsDialog />
-                            </div>
+                    
+                    <div>
+                            <List>
+                                <ListItemText primaryText="Chat 1"/>
+                                <ListItemText primaryText="Chat 2"/>
+                                <ListItemText primaryText="Chat 3"/>
+                            </List>
+
+                        
+                            <ChatsDialog />
                         </div>
-                    </Fragment>
                 )
             }
         }
