@@ -1,0 +1,14 @@
+.msg {
+    width: 520px;
+    text-align: center;
+    border: 1px solid #a6a6a6;
+    padding: 15px 0 0;
+    margin: 0px 0px 20px;
+}
+    .msg strong {
+        color: grey;
+        font-size: 16px;
+    }
+    .msg p {
+        color: #212121;
+    }

@@ -1,0 +1,21 @@
+.MessageField {}
+
+.inputField {
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+    width: 300px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.inputField:focus {
+    outline: none;
+}
+
+.inputButton {
+    background-color: lightblue;
+    border: none;
+    padding: 15px 32px;
+    font-size: 16px;
+}
