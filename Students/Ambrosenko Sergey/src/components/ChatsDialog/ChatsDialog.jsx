@@ -11,7 +11,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
 
 const emails = ['Чат 1', 'Чат 2', 'Чат 3'];
@@ -40,7 +40,7 @@ function SimpleDialog(props) {
 
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Выбрать чат</DialogTitle>
+      <DialogTitle id="simple-dialog-title">Выберите чат</DialogTitle>
       <List>
         {emails.map((email) => (
           <ListItem button onClick={() => handleListItemClick(email)} key={email}>
@@ -87,12 +87,12 @@ export default function SimpleDialogDemo() {
 
   return (
     <div>
-      <Typography variant="subtitle1">
+      {/* <Typography variant="subtitle1">
         Выбрано: <br /> {selectedValue}
       </Typography>
-      <br />
-      <Button variant="outlined" color="primary" onClick={handleClickOpen} style={ { outline: 'none' } }>
-        Выбрать чат
+      <br /> */}
+      <Button variant="outlined" onClick={handleClickOpen} style={ { outline: 'none', color: 'white', borderColor: 'white' } }>
+        Добавить чат
       </Button>
       <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
     </div>
