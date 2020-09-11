@@ -2,11 +2,12 @@
         import './style.css';
         import React, { Component, Fragment } from 'react';
 
-        import {TextField} from '@material-ui/core';
-        import FloatingActionButton from '../FloatingButton/FloatingButton.jsx';
-       
+        // import {TextField} from '@material-ui/core';
+        // import FloatingActionButton from '../FloatingButton/FloatingButton.jsx';
+       import InputComp from '../Input/Input.jsx';
+       import FieldComp from '../MessageFieldNew/MessageFieldNew.jsx';
 
-        import Message from '../Message/Message.jsx';
+        // import Message from '../Message/Message.jsx';
 
         export default class MessageField extends Component {
             constructor(props) {
@@ -36,25 +37,25 @@
                 }
             }
 
-            handleChange = event => {
-                if (event.keyCode !== 13) {
-                    this.setState({ text: event.target.value });
-                } else {
-                    this.sendMessage();
-                }                
-            }
+            // handleChange = event => {
+            //     if (event.keyCode !== 13) {
+            //         this.setState({ text: event.target.value });
+            //     } else {
+            //         this.sendMessage();
+            //     }                
+            // }
 
             handleChangeSender = event => {
                 this.setState({ sender: event.target.value });
             }
 
-            sendMessage = () => {
+            sendMessage = (text) => {
                 this.setState({
-                    text: '',
+                    // text: '',
                     sender: '',
                     messages: [...this.state.messages, {
                             sender: this.state.sender,
-                            text: this.state.text
+                            text: text
                         }
                     ]
                 })
@@ -73,18 +74,21 @@
             }
         
             render() {
-                let { messages } = this.state;
-                            let contentArray = messages.map((msg, index) => {
-                                let { sender, text } = msg;
-                                return <Message text = { text } sender = { sender } key = { index }/>
-                            });
+                // let { messages } = this.state;
+                //             let contentArray = messages.map((msg, index) => {
+                //                 let { sender, text } = msg;
+                //                 return <Message text = { text } sender = { sender } key = { index }/>
+                //             });
         
                 return (
                     <div className="d-flex flex-column layout">
-                        <div className="d-flex flex-column content-wrp">
+                        <FieldComp messages = { this.state.messages } />
+                        <InputComp send = { this.sendMessage } />
+
+                        {/* <div className="d-flex flex-column content-wrp">
                             { contentArray }
-                        </div>
-                        <div className="controls d-flex justify-content-end align-items-baseline"
+                        </div> */}
+                        {/* <div className="controls d-flex justify-content-end align-items-baseline"
                              style={ {width: '100%', display: 'flex'} }
                         >
                             <TextField
@@ -99,7 +103,7 @@
 
                             <FloatingActionButton
                                 send={ this.state.sendFunc }
-                            ></FloatingActionButton>
+                            ></FloatingActionButton> */}
                             {/* <input 
                                 placeholder="Name"
                                 className="inputName" type="text" 
@@ -116,7 +120,7 @@
                             />
                             
                             <button className="sendBtn" onClick = { this.sendMessage }>Send</button> */}
-                        </div>
+                        {/* </div> */}
                     </div>
                     
                 )

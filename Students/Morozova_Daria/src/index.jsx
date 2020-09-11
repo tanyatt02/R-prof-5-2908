@@ -7,6 +7,7 @@ import './layout/css/styles.css';
 
 import MessageField from './components/MessageField/MessageField.jsx';
 import ChatList from './components/ChatList/ChatList.jsx';
+import FieldNew from './components/MessageFieldNew/MessageFieldNew.jsx';
 
 const container = document.getElementById('app');
 
@@ -18,6 +19,7 @@ ReactDom.render(
             </div>
             <div className="messages-wrp">
                 <MessageField name="Rick"/>
+                
             </div>
         </div>
     </StylesProvider>,
