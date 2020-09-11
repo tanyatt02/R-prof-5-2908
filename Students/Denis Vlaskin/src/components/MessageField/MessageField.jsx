@@ -31,7 +31,10 @@ export default class MessageField extends Component {
     }
 
     handleChange = evt => {
-        this.setState({ text: evt.target.value });
+        if (evt.keyCode == 13)
+            this.sendMessage();
+        else
+            this.setState({ text: evt.target.value });
     }
 
     sendMessage = () => {
@@ -76,7 +79,7 @@ export default class MessageField extends Component {
 
         return (
             <div className="d-flex flex-column">
-                <div>
+                <div class="d-flex flex-column">
                     { contentArray }
                 </div>
                 <div className="controls d-flex">
@@ -84,6 +87,7 @@ export default class MessageField extends Component {
                         type="text" 
                         value = { this.state.text }
                         onChange = { this.handleChange }
+                        onKeyUp = { this.handleChange }
                     />
                     <button onClick = { this.sendMessage }>Send</button>
                 </div>
