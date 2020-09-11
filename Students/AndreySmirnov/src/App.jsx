@@ -1,9 +1,9 @@
 import React from 'react'
-import MessageField from "./components/messageField/MessageField.jsx";
+import Layout from "./components/Layout/Layout.jsx";
 
 const App = () => {
     return (
-            <MessageField/>
+            <Layout/>
     )
 }
 
