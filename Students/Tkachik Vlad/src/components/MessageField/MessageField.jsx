@@ -31,6 +31,16 @@ export default class MessageField extends React.Component {
                     text: 'Nooooooo',
                     isUser:false
                 },
+                {
+                    sender: 'Luke',
+                    text: 'Nooooooo',
+                    isUser:false
+                },
+                {
+                    sender: 'Luke',
+                    text: 'Nooooooo',
+                    isUser:false
+                },
             ],
         }
     }
@@ -55,6 +65,16 @@ export default class MessageField extends React.Component {
         });
     }
 
+    componentDidMount() {
+        const container = document.querySelector('.messageField');
+        container.scrollTop =  container.scrollHeight;
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const container = document.querySelector('.messageField');
+        container.scrollTop =  container.scrollHeight;
+    }
+
     render() {
         let { messages } = this.state;
 
@@ -72,14 +92,14 @@ export default class MessageField extends React.Component {
                     { contentArray }
                 </div>
                 <div className="controls d-flex">
-                    <input
-                        type="textarea"
+                    <textarea
                         value = { this.state.text }
                         onChange = { this.handleChange }
                         onKeyUp={ this.handleChange }
                         placeholder= { "Введите сообщение..." }
-                        cols = "3"
-                        rows = "30"
+                        autoFocus={ true }
+                        cols = "30"
+                        rows = "3"
                     />
                     <button className="send"
                             onClick = { this.sendMessage }>

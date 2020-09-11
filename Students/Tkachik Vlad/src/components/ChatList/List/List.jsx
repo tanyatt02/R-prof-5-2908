@@ -13,32 +13,26 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const useStylesChecked = makeStyles(() => ({
-    root: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: 'olive',
-    },
-}));
-
 export default function ListDividers() {
     let classes = useStyles();
 
-    /*const checkChat = (id) => {
-        classes = useStylesChecked();
-        console.log(id)
-    }*/
+    const checkChat = (evt) => {
+        console.log(evt);
+    }
 
     return (
         <List component="nav" className={classes.root} aria-label="mailbox folders">
-            <ListItem button id='1' onClick={ () => {checkChat(1)} }>
+            <ListItem button className='selectChat chat_1'
+                      onClick={ checkChat }>
                 <ListItemText primary="Darth" />
             </ListItem>
             <Divider />
-            <ListItem button divider id='2' onClick={ () => checkChat(2) }>
+            <ListItem button divider className='selectChat chat_2'
+                      onClick={ checkChat }>
                 <ListItemText primary="Chub aka" />
             </ListItem>
-            <ListItem button id='3' onClick={ () => checkChat(3) }>
+            <ListItem button className='selectChat chat_3'
+                      onClick={ checkChat }>
                 <ListItemText primary="Lea" />
             </ListItem>
             <Divider light />
