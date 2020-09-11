@@ -1,9 +1,10 @@
 .message-field {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     height: 70%;
     width: 100%;
-    padding: 20px;
+    padding: 30px;
     border: 1px solid #eda410;
     border-right: none;
     border-top-left-radius: 30px;

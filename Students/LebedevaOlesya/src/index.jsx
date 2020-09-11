@@ -4,21 +4,19 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './layout/css/styles.css';
 import Layout from './components/Layout/Layout.jsx';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './components/Router/Router.jsx';
 
 const container = document.getElementById('app');
 
 ReactDom.render(
-    <MuiThemeProvider>
-        <Fragment>
-            <Layout />
-        </Fragment>
-    </MuiThemeProvider>,
+    <BrowserRouter>
+        <MuiThemeProvider>
+            <Router />
+            {/* <Fragment>
+                <Layout />
+            </Fragment> */}
+        </MuiThemeProvider>
+    </BrowserRouter>,
     container,
  );
-
-// ReactDom.render(
-//     <div className="layout">
-//         <MessageField name="Darth Vader"/>
-//     </div>,
-//     container
-// )

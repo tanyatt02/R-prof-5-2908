@@ -1,6 +1,7 @@
 import './style.css';
 import React, { Component, Fragment } from 'react';
 import { TextField, FloatingActionButton } from 'material-ui';
+import { Link, animateScroll as scroll } from "react-scroll";
 // import Button from '@material-ui/core/Button';
 import SendIcon from 'material-ui/svg-icons/content/send';
 import Message from '../Message/Message.jsx';
@@ -48,6 +49,10 @@ export default class MessageField extends Component {
         }
      };
     
+     scrollToTop = () => {
+        scroll.scrollToBottom(); 
+       };
+
     // Ставим фокус на <input> при монтировании компонента
     componentDidMount() {
         this.textInput.current.focus();
@@ -71,8 +76,8 @@ export default class MessageField extends Component {
                         messages: [ ...this.state.messages, {text: 'Не приставай ко мне, я робот!', sender: 'Bot'} ] }),
                 1000);
         }
-     }
-     
+    }
+    
     //     //Метод для ответа Бота
     // componentDidUpdate() {
     //     if (this.state.messages.length % 2 === 1) {
@@ -121,12 +126,14 @@ export default class MessageField extends Component {
                             onKeyUp={ (event) => this.handleKeyUp(event, messages) }
                         /> 
                         <FloatingActionButton 
-                            mini={true} style={{ boxShadow: 'none'}} onClick={this.sendMessage}>
+                            mini={true} style={{ boxShadow: 'none' }} 
+                            onClick= { this.sendMessage } >
                             <SendIcon />
                         </FloatingActionButton>
                     </div>
                 </div>
             </div>
         )
+
     }
 }
