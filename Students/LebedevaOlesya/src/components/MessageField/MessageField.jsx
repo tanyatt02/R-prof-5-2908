@@ -64,6 +64,15 @@ export default class MessageField extends Component {
         });
     }
 
+    componentDidUpdate(prevProps, prevState)  {
+        if (prevState.messages.length < this.state.messages.length && this.state.messages[this.state.messages.length - 1].sender === 'Me') {
+            setTimeout(() =>
+                    this.setState({
+                        messages: [ ...this.state.messages, {text: 'Не приставай ко мне, я робот!', sender: 'Bot'} ] }),
+                1000);
+        }
+     }
+     
     //     //Метод для ответа Бота
     // componentDidUpdate() {
     //     if (this.state.messages.length % 2 === 1) {
