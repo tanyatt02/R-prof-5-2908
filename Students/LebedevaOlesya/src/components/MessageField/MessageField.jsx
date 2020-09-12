@@ -36,24 +36,24 @@ export default class MessageField extends Component {
 
     handleChange = evt => {
         this.setState({ text: evt.target.value });
-        // this.state.text = evt.target.value // NO REACTIVITY
     }
 
-    handleSender = evt => {
-        this.setState({ sender: evt.target.value });
-    }
+    // handleSender = evt => {
+    //     this.setState({ sender: evt.target.value });
+    // }
 
     handleKeyUp = (event, message) => {
         if (event.keyCode === 13) { // Отправка сообщений по клавише Enter
             this.sendMessage(message)
         }
-     };
-    
-     scrollToTop = () => {
-        scroll.scrollToBottom(); 
-       };
+    };
+
+    //  scrollToTop = () => {
+    //     scroll.scrollToBottom(); 
+    //    };
 
     // Ставим фокус на <input> при монтировании компонента
+
     componentDidMount() {
         this.textInput.current.focus();
     }
@@ -63,21 +63,22 @@ export default class MessageField extends Component {
             text: '',
             // sender: '',
             messages: [...this.state.messages, {
-                sender: 'Me',
+                sender: this.props.name,
                 text: this.state.text
             }]
         });
     }
 
-    componentDidUpdate(prevProps, prevState)  {
+    componentDidUpdate(prevProps, prevState) {
         if (prevState.messages.length < this.state.messages.length && this.state.messages[this.state.messages.length - 1].sender === 'Me') {
             setTimeout(() =>
-                    this.setState({
-                        messages: [ ...this.state.messages, {text: 'Не приставай ко мне, я робот!', sender: 'Bot'} ] }),
+                this.setState({
+                    messages: [...this.state.messages, { text: 'Не приставай ко мне, я робот!', sender: 'Bot' }]
+                }),
                 1000);
         }
     }
-    
+
     //     //Метод для ответа Бота
     // componentDidUpdate() {
     //     if (this.state.messages.length % 2 === 1) {
@@ -104,30 +105,20 @@ export default class MessageField extends Component {
             <div className="layout-msg-field col-9">
                 <div className="message-field">
                     {contentArray}
-                    <div className="d-flex pt-3 align-items-center align-self-end">
-                        {/* <TextField
-                            ref={ this.textInput }
-                            name="input"
-                            value="Me"
-                            fullWidth={ true }
-                            hintText="Sender's Name"
-                            type="text"
-                            value={this.state.sender}
-                            onChange={this.handleSender}
-                        /> */}
+                    <div className="controls d-flex pt-3 align-items-center align-self-end">
                         <TextField
                             id="input"
-                            ref={ this.textInput }
+                            ref={this.textInput}
                             name="input"
                             hintText="Message"
                             type="text"
                             value={this.state.text}
                             onChange={this.handleChange}
-                            onKeyUp={ (event) => this.handleKeyUp(event, messages) }
-                        /> 
-                        <FloatingActionButton 
-                            mini={true} style={{ boxShadow: 'none' }} 
-                            onClick= { this.sendMessage } >
+                            onKeyUp={(event) => this.handleKeyUp(event, messages)}
+                        />
+                        <FloatingActionButton
+                            mini={true} style={{ boxShadow: 'none' }}
+                            onClick={this.sendMessage} >
                             <SendIcon />
                         </FloatingActionButton>
                     </div>
