@@ -86,10 +86,6 @@ export default function SimpleDialogDemo() {
 
   return (
     <div>
-      {/* <Typography variant="subtitle1">
-        Выбрано: <br /> {selectedValue}
-      </Typography>
-      <br /> */}
       <Button variant="outlined" onClick={handleClickOpen} style={ { outline: 'none', color: 'white', borderColor: 'white' } }>
         Добавить чат
       </Button>
