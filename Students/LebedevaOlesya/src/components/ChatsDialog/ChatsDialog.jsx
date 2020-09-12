@@ -17,14 +17,15 @@ import Typography from '@material-ui/core/Typography';
 // import { blue } from '@material-ui/core/colors';
 import { createMuiTheme } from '@material-ui/core/styles';
 import cyan from '@material-ui/core/colors/cyan';
+import Button from '@material-ui/core/Button';
 
-const theme = createMuiTheme({
-  palette: {
-    primary: cyan,
-  },
-});
+// const theme = createMuiTheme({
+//   palette: {
+//     primary: cyan,
+//   },
+// });
 
-const chats = ['The Best Chat', 'Looser\'s Chat', 'Brother\'s Chat'];
+const emails = ['Chat 1', 'Chat 2', 'Chat 3'];
 const useStyles = makeStyles({
   avatar: {
     backgroundColor: cyan[100],
@@ -32,7 +33,16 @@ const useStyles = makeStyles({
   },
   testClass: {
     fontSize: '10em',
-  }
+  },
+  root: {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+  },
 });
 
 function SimpleDialog(props) {
@@ -51,7 +61,7 @@ function SimpleDialog(props) {
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
       <DialogTitle id="simple-dialog-title">Change the Chat</DialogTitle>
       <List>
-        {chats.map((email) => (
+        {emails.map((email) => (
           <ListItem button onClick={() => handleListItemClick(email)} key={email}>
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
@@ -83,7 +93,8 @@ SimpleDialog.propTypes = {
 
 export default function SimpleDialogDemo() {
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(chats[1]);
+  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+  const classes = useStyles();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -98,11 +109,10 @@ export default function SimpleDialogDemo() {
     <div>
       <Typography variant="subtitle1">Current Chat: {selectedValue}</Typography>
       <br />
-      <Fab variant="extended" color="primary" onClick={handleClickOpen}>
-        <NavigationIcon />Open Chat's List
-      </Fab>
+      {/* <Fab variant="extended" color="primary" onClick={handleClickOpen}> */}
+      <Button className={classes.root} onClick={handleClickOpen}>Open Chat's List</Button>
+      {/* </Fab> */}
       <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
     </div>
   );
 }
-    
