@@ -15,14 +15,19 @@ import MuiThemeProvider from '@material-ui/styles/ThemeProvider/'
 
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
 
+import { Provider } from 'react-redux';
+import initStore from './store';
+
 const container = document.getElementById('app');
 const theme = {};
 ReactDom.render(
-    <BrowserRouter>
-        {/* <MuiThemeProvider theme = { theme }> */}
-            <Router />
-        {/* </MuiThemeProvider> */}
-    </BrowserRouter>
+    <Provider store = { initStore() }>
+        <BrowserRouter>
+            {/* <MuiThemeProvider theme = { theme }> */}
+                <Router />
+            {/* </MuiThemeProvider> */}
+        </BrowserRouter>
+    </Provider>
     ,
     container
 )

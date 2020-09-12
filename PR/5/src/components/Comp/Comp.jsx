@@ -5,47 +5,32 @@ import { Component } from 'react';
 import InputComp from '../CompInputTest/comp.jsx';
 import FieldComp from '../CompFieldTest/comp.jsx';
 
-export default class Comp extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            messages: [
-                {
-                    sender: '12345',
-                    text: 'Hello'
-                },
-                {
-                    sender: '12345',
-                    text: 'I am your father'
-                },
-                {
-                    sender: null,
-                    text: 'Hello'
-                },
-                {
-                    sender: null,
-                    text: 'Nooooooo'
-                }
-            ]
-        }
-    }
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-    sendMessage = (text) => {
-        this.setState({
-            messages: [...this.state.messages, {
-                    sender: this.props.name,
-                    text: text
-                } 
-            ]
-        });
+import  { sendMessage } from '../../store/actions/messages-actions';
+
+class MessageField extends Component {
+
+    send = (text, sender = 'Darth Vader') => {
+        this.props.sendMessage(text, sender);
     }
 
     render() {
         return (
             <div className="d-flex flex-column">
-               <FieldComp messages = { this.state.messages } />
-               <InputComp send = { this.sendMessage } />
+               <FieldComp messages = { this.props.messages } />
+               <InputComp send = { this.send } />
             </div>
         )
     }
 }
+
+
+const mapStateToProps = ({ msgReducer }) => ({
+    messages: msgReducer.messages
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageField);
