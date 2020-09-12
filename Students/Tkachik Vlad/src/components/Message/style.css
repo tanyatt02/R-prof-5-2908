@@ -4,4 +4,13 @@
     border-radius: 20px;
     font-size: 18px;
     margin: 5px;
+    max-width: 70%;
+}
+.msg > p {
+    margin: 5px;
+}
+
+.user-msg {
+    background-color: lightgreen;
+    align-self: flex-end;
 }
