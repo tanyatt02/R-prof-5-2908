@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "1",
   "version": "1.0.0",
@@ -42,3 +43,49 @@
   },
   "description": ""
 }
+=======
+{
+  "name": "1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode development",
+    "dev": "webpack-dev-server --open",
+    "crfull": "node utils/componentCreator/index.js --n",
+    "crless": "node utils/componentCreator/index.js --s --n"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.2.2",
+    "html-webpack-plugin": "^4.4.1",
+    "mini-css-extract-plugin": "^0.11.0",
+    "minimist": "^1.2.5",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/styles": "^4.10.0",
+    "bootstrap": "^4.5.2",
+    "fontsource-roboto": "^3.0.3",
+    "jquery": "^3.5.1",
+    "material-ui": "^0.20.2",
+    "popper.js": "^1.16.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scroll": "^1.8.1"
+  },
+  "description": ""
+}
+>>>>>>> c1f317307805d71d7423a0b5b7291b1f4987a096

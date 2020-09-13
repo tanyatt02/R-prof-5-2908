@@ -1,17 +1,33 @@
+.message-field {
+    display: flex;
+    flex-direction: column;
+    background-color: #e2e2e2;
+    height: 50%;
+    width: 100%;
+    padding: 20px;
+       
+ }
 
-input[type=text] {
+.layout {
+    height: 100%;
+    width: 30%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     
-    padding: 12px 15px;
-    margin: 5px 0;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
 }
-input[type=text]:hover {
-    border: 2px solid#70b185;
-}
-input[type=text]:focus {
-    background-color: rgb(207, 221, 226);
+.Msg_Field{
+    display: flex;
+    flex-direction: column;
+    background-color: #e2e2e2;
+    height: 100%;
+    min-height: 400px;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 5px;
+    overflow-y: scroll;
 }
 .send_Btn{
     width: 100%;
@@ -32,3 +48,26 @@ input[type=text]:focus {
     outline: none;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
+input[type=text] {
+    
+    padding: 12px 15px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+input[type=text]:hover {
+    border: 2px solid#70b185;
+}
+input[type=text]:focus {
+    background-color: rgb(207, 221, 226);
+}
+
+ 
+ 
+ 
+
+
+
+
+ 

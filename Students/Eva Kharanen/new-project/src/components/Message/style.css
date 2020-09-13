@@ -1,0 +1,16 @@
+.msg {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 10px;
+    background-color: #5ae8af;
+    width: 200px;
+    height: auto;
+    text-align: justify;
+    font: 400 14px 'Open Sans', sans-serif;
+    border: 1px solid #04bb71;
+    border-radius: 15px;
+}
+.wrap{
+    display: flex;
+}
