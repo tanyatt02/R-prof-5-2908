@@ -1,10 +1,11 @@
 import './style.css';
 import React, { Component, Fragment } from 'react';
 import { TextField, FloatingActionButton } from 'material-ui';
-import { Link, animateScroll as scroll } from "react-scroll";
-// import Button from '@material-ui/core/Button';
 import SendIcon from 'material-ui/svg-icons/content/send';
 import Message from '../Message/Message.jsx';
+import { makeStyles } from '@material-ui/core/styles';
+
+
 
 export default class MessageField extends Component {
     constructor(props) {
@@ -38,22 +39,13 @@ export default class MessageField extends Component {
         this.setState({ text: evt.target.value });
     }
 
-    // handleSender = evt => {
-    //     this.setState({ sender: evt.target.value });
-    // }
-
     handleKeyUp = (event, message) => {
         if (event.keyCode === 13) { // Отправка сообщений по клавише Enter
             this.sendMessage(message)
         }
     };
 
-    //  scrollToTop = () => {
-    //     scroll.scrollToBottom(); 
-    //    };
-
     // Ставим фокус на <input> при монтировании компонента
-
     componentDidMount() {
         this.textInput.current.focus();
     }
@@ -92,7 +84,7 @@ export default class MessageField extends Component {
     //         }, 1000)
     //     }
     // }
-
+    
     render() {
         let { messages } = this.state;
 
