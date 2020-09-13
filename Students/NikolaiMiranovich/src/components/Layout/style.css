@@ -5,7 +5,10 @@
 }
 
 .chatList-wrp {
+    width: 100%;
+    height: auto;
     display: flex;
+    flex-direction: column;
     flex-basis: 30%;
 }
 

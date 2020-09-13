@@ -5,6 +5,7 @@
         import ChatsDialog from '../ChatsDialog/ChatsDialog.jsx';
         import List from '@material-ui/core/List';
         import ListItemText from '@material-ui/core/ListItemText';
+        import SendIcon from '@material-ui/core/SvgIcon';
 
         export default class ChatList extends Component {
             constructor(props) {
@@ -21,14 +22,14 @@
                     
                     <div>
                             <List>
-                                <ListItemText Text="Chat 1"/>
-                                <ListItemText Text="Chat 2"/>
-                                <ListItemText Text="Chat 3"/>
+                                <ListItemText primary="Chat 1" />
+                                <ListItemText primary="Chat 2" />
+                                <ListItemText primary="Chat 3" />
                             </List>
 
                         
                             <ChatsDialog />
-                        </div>
+                    </div>
                 )
             }
         }
