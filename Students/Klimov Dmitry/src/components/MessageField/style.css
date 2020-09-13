@@ -1,0 +1,11 @@
+.MessageField {
+    width: 70%;
+}
+
+.controls{
+    margin-top: 10px;
+}
+.controls input {
+    border-radius: 15px;
+    margin-right: 15px;
+}

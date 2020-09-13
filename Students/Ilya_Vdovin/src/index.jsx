@@ -4,13 +4,14 @@ import ReactDom from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './layout/css/styles.css';
 
-import MessageField from './components/MessageField/MessageField.jsx';
+import Layout from './components/Layout/Layout.jsx';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const container = document.getElementById('app');
 
 ReactDom.render(
     <div>
-        <MessageField name="Darth Vader"/>
+        <Layout />
     </div>,
     container
 )

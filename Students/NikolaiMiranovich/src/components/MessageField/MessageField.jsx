@@ -1,13 +1,15 @@
 import './style.css';
 import React, { Component, Fragment } from 'react';
 
+import { TextField } from '@material-ui/core';
 import Message from '../Message/Message.jsx';
+import FloatingActionButton from '../FloatingActionButton/FloatingActionButton.jsx';
 
 export default class MessageField extends Component {
     constructor(props) {
         super(props);
+        this.textInput = React.createRef();
         this.state = {
-            text: '',
             messages: [
                 {
                     sender: 'Magistr Yoda',
@@ -25,18 +27,32 @@ export default class MessageField extends Component {
                     sender: null,
                     text: 'Nooooooo'
                 }
-            ]
+            ],
+            input: '',
         }
     }
 
+    componentDidMount() {
+        this.textInput.current.focus();
+    }
+
+    // handleClick = (message) => {
+    //     this.sendMessage(message)
+    // }
+
     handleChange = evt => {
-        this.setState({ text: evt.target.value });
-        // this.state.text = evt.target.value // NO REACTIVITY
+        if (evt.keyCode !==13) {
+            this.setState({ input: evt.target.value });
+        } else {
+            this.sendMessage();
+        }
+            // this.state.text = evt.target.value // NO REACTIVITY
     }
 
     sendMessage = () => {
         this.setState({ 
-            text: '',
+            // text:'',
+            // input: '',
             messages: [...this.state.messages, {
                     sender: this.props.name,
                     text: this.state.text
@@ -69,17 +85,23 @@ export default class MessageField extends Component {
         // });
 
         return (
-            <div className="d-flex flex-column">
-                <div>
+            <div className="layout">
+                <div className="message-field">
                     { contentArray }
                 </div>
-                <div className="controls d-flex">
-                    <input 
-                        type="text" 
-                        value = { this.state.text }
+                <div className="button-wrap">
+                    <TextField 
+                        ref={ this.textInput }
+                        // type="text"
+                        name="input"
+                        fullWidth={ true }
+                        hintText="Введите сообщение"
+                        style={ { fontSize: '22px' } }
+                        value = { this.state.input }
                         onChange = { this.handleChange }
+                        onKeyUp = { (evt) => this.handleChange(evt, this.state.input) }
                     />
-                    <button onClick = { this.sendMessage }>Send</button>
+                    <FloatingActionButton onClick = { () => this.sendMessage(this.state.input) }></FloatingActionButton>
                 </div>
             </div>
         )

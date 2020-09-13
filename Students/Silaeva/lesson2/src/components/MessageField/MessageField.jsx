@@ -23,7 +23,7 @@
                             text: 'Hello'
                         },
                         {
-                            sender: 'Putin',
+                            sender: 'What',
                             text: 'Nooooooo'
                         }
                     ]
@@ -32,8 +32,13 @@
             }
 
             handleChange = evt => {
-                this.setState({ text: evt.target.value });
-            
+                if (evt.keyCode !== 13) {
+                    this.setState({ text: evt.target.value });
+                } else {
+                    this.sendMessage();
+                }
+                
+                // this.state.text = evt.target.value // NO REACTIVITY
             }
 
             sendMessage = () => {
@@ -48,15 +53,7 @@
             }
 
             componentDidUpdate() {
-                if (this.state.messages.length % 2 === 1) {
-                    setTimeout(() =>
-                            this.setState(
-                                { messages: [ ...this.state.messages, {
-                                        sender: '............',
-                                        text: `${this.state.text} Hello, I am bot. caan I help u?`
-                                    } ] }),
-                        1000);
-                }
+                //сделать, чтобы нам отвечал бот
             }
 
             render() {
@@ -67,7 +64,10 @@
                     return <Message text = { text } sender = { sender } key = { index }/>
                 });
 
-        
+                // let contentArray = Object.keys(messages).map(key => {
+                //     let { text, sender } = messages[key];
+                //     return <Message text = { text } sender = { sender } key = { key }/>
+                // });
         
                 return (
                     <div className="d-flex flex-column">
@@ -79,6 +79,7 @@
                                 type="text" 
                                 value = { this.state.text }
                                 onChange = { this.handleChange }
+                                onKeyUp = { this.handleChange }
                             />
                             <button onClick = { this.sendMessage }>Send</button>
                         </div>
@@ -86,4 +87,3 @@
                 )
             }
         }
-    
