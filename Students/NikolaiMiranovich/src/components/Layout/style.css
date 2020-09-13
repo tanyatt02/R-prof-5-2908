@@ -1,8 +1,6 @@
-
-
 .layout-wrp {
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
 }
 
@@ -12,12 +10,11 @@
 }
 
 .messageField-wrp {
-    display: flex;
+    display: block;
     flex-basis: 70%;
     background-color: mediumturquoise;
     flex-direction: column;
-    height: 50%;
+    height: auto;
     width: 100%;
     padding: 20px;
-    overflow-y: scroll;
 }

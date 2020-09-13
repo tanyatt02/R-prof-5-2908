@@ -21,9 +21,9 @@
                     
                     <div>
                             <List>
-                                <ListItemText primaryText="Chat 1"/>
-                                <ListItemText primaryText="Chat 2"/>
-                                <ListItemText primaryText="Chat 3"/>
+                                <ListItemText Text="Chat 1"/>
+                                <ListItemText Text="Chat 2"/>
+                                <ListItemText Text="Chat 3"/>
                             </List>
 
                         

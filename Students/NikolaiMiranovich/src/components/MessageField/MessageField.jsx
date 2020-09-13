@@ -12,11 +12,11 @@ export default class MessageField extends Component {
         this.state = {
             messages: [
                 {
-                    sender: 'Magistr Yoda',
+                    sender: 'bot',
                     text: 'Hello'
                 },
                 {
-                    sender: 'Magistr Yoda',
+                    sender: 'bot',
                     text: 'I am your father'
                 },
                 {
@@ -36,48 +36,50 @@ export default class MessageField extends Component {
         this.textInput.current.focus();
     }
 
-    // handleClick = (message) => {
-    //     this.sendMessage(message)
-    // }
+    
+    handleClick = (message) => {
+        this.sendMessage(message)
+    };
 
     handleChange = evt => {
-        if (evt.keyCode !==13) {
-            this.setState({ input: evt.target.value });
-        } else {
-            this.sendMessage();
-        }
-            // this.state.text = evt.target.value // NO REACTIVITY
+        this.setState({ [evt.target.name]: evt.target.value });
     }
 
-    sendMessage = () => {
+    handleKeyUp = (evt, message) => {
+        if (evt.keyCode ===13) {
+            this.sendMessage(message)
+        } 
+    }
+
+    sendMessage = (message) => {
         this.setState({ 
-            // text:'',
-            // input: '',
             messages: [...this.state.messages, {
-                    sender: this.props.name,
-                    text: this.state.text
+                    sender: 'me',
+                    text: message
                 } 
-            ]
+            ],
+            input: '',
         });
     }
 
     componentDidUpdate() {
-        if (this.state.messages.length % 2 === 1) {
-
-   
-        setTimeout(() =>
-        this.setState(
-            { messages: [ ...this.state.messages, 'Не беси меня, я робот!' ] }), 1000);
+        if (this.state.messages[this.state.messages.length -1].sender === 'me') {
+            setTimeout(() =>
+                this.setState(
+                    { messages: [ ...this.state.messages, {text: 'Не беси меня, я робот!', sender: 'bot'} ] }), 1000);
         }
     }
 
     render() {
-        let { messages } = this.state;
+        const messageElements = this.state.messages.map((message, index) => (
+            <Message key={ index } text={ message.text } sender={ message.sender } />
+        ));
+        // let { messages } = this.state;
 
-        let contentArray = messages.map((msg, index) => {
-            let { text, sender } = msg;
-            return <Message text = { text } sender = { sender } key = { index }/>
-        });
+        // let contentArray = messages.map((msg, index) => {
+        //     let { text, sender } = msg;
+        //     return <Message text = { text } sender = { sender } key = { index }/>
+        // });
 
         // let contentArray = Object.keys(messages).map(key => {
         //     let { text, sender } = messages[key];
@@ -87,7 +89,7 @@ export default class MessageField extends Component {
         return (
             <div className="layout">
                 <div className="message-field">
-                    { contentArray }
+                    { messageElements }
                 </div>
                 <div className="button-wrap">
                     <TextField 
@@ -99,9 +101,9 @@ export default class MessageField extends Component {
                         style={ { fontSize: '22px' } }
                         value = { this.state.input }
                         onChange = { this.handleChange }
-                        onKeyUp = { (evt) => this.handleChange(evt, this.state.input) }
+                        onKeyUp = { (evt) => this.handleKeyUp(evt, this.state.input) }
                     />
-                    <FloatingActionButton onClick = { () => this.sendMessage(this.state.input) }></FloatingActionButton>
+                    <FloatingActionButton onClick = { () => this.sendMessage(this.state.input,) }></FloatingActionButton>
                 </div>
             </div>
         )

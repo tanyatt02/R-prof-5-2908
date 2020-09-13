@@ -1,15 +1,22 @@
 import './style.css';
 import React from 'react';
+import PropTypes from 'prop-types';
 
-    export default props => {
-        let { sender, text } = props;
-            
-        return (
-            <div className="message">
-                { sender && <strong>{ sender }</strong> }
-                { !sender && <strong>CHUBAKKA</strong> }
-                <p>{ sender || (!sender && text) ? text : 'Не беси меня, я робот!' }</p>
+export default class Message extends React.Component {
+    static propTypes = {
+        text: PropTypes.string.isRequired,
+        sender: PropTypes.string.isRequired,
+    };
+
+    render() {
+            return <div
+            className="message"
+            style={ { alignSelf: this.props.sender === 'bot' ?
+                'flex-start' : 'flex-end' } }
+        >
+            <div>{ this.props.text }</div>
+            <div className="message-sender">{ this.props.sender }</div>
             </div>
-        )
     }
+}
     

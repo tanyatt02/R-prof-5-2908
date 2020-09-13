@@ -1,6 +1,6 @@
 .layout {
     height: 100%;
-    width: 100%;
+    width: auto;
     margin: auto;
     /* display: flex;
     align-items: center;
@@ -9,9 +9,12 @@
 
  .message-field{
     margin: auto;
+    height: 90%;
+    border: 2px solid black;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     flex-direction: column;
+    overflow-y: scroll;
  }
 
  .button-wrap {
