@@ -36,18 +36,6 @@ export default class ChatList extends Component {
                     <ChatsDialog />
                 </div>
             </div>
-        ) 
-
-        // return (
-        //     <Fragment>
-        //         <Box className="ChatList d-flex flex-column col-3" color="primary.contrastText">
-        //             {/* chat-list */}
-        //             <div>
-        //                 <ChatsDilog />
-        //             </div>
-        //         </Box>
-        //     </Fragment>
-        // )
+        )
     }
 }
-    
