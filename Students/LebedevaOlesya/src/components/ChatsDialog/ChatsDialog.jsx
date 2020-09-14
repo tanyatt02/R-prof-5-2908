@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 // import Button from '@material-ui/core/Button';
-import Fab from '@material-ui/core/Fab';
-import NavigationIcon from '@material-ui/icons/Navigation';
 import Avatar from '@material-ui/core/Avatar';
+import { Link } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -13,18 +12,15 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
-import Typography from '@material-ui/core/Typography';
-import { createMuiTheme } from '@material-ui/core/styles';
 import cyan from '@material-ui/core/colors/cyan';
 import Button from '@material-ui/core/Button';
 
-// const theme = createMuiTheme({
-//   palette: {
-//     primary: cyan,
-//   },
-// });
 
-const emails = ['Chat 1', 'Chat 2', 'Chat 3'];
+const emails = [
+  <Link to="/chat/1/"><ListItemText primary="Chat 1"/></Link>, 
+  <Link to="/chat/2/"><ListItemText primary="Chat 2"/></Link>, 
+  <Link to="/chat/3/"><ListItemText primary="Chat 3"/></Link>
+];
 const useStyles = makeStyles({
   avatar: {
     backgroundColor: cyan[100],
@@ -106,11 +102,9 @@ export default function SimpleDialogDemo() {
 
   return (
     <div>
-      <Typography variant="subtitle1">Current Chat: {selectedValue}</Typography>
-      <br />
-      {/* <Fab variant="extended" color="primary" onClick={handleClickOpen}> */}
+      {/* <Typography variant="subtitle1">Current Chat: {selectedValue}</Typography>
+      <br /> */}
       <Button className={classes.root} onClick={handleClickOpen}>Open Chat's List</Button>
-      {/* </Fab> */}
       <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
     </div>
   );

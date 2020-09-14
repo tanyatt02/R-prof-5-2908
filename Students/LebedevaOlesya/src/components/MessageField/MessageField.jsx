@@ -5,6 +5,7 @@ import SendIcon from 'material-ui/svg-icons/content/send';
 import Message from '../Message/Message.jsx';
 import PropTypes from "prop-types";
 import { makeStyles } from '@material-ui/core/styles';
+import InputComp from '../CompInputTest/comp.jsx';
 
 
 
@@ -13,28 +14,6 @@ export default class MessageField extends React.Component {
         super(props);
         this.textInput = React.createRef();
         this.msgField = React.createRef();
-        // this.state = {
-        //     text: '',
-        //     // sender: '',
-        //     messages: [
-        //         {
-        //             sender: 'Darth Vader',
-        //             text: 'Hello'
-        //         },
-        //         {
-        //             sender: 'Darth Vader',
-        //             text: 'I am your father'
-        //         },
-        //         {
-        //             sender: 'Петя Васечкин',
-        //             text: 'Hello'
-        //         },
-        //         {
-        //             sender: 'Вася Петечкин',
-        //             text: 'Nooooooo'
-        //         }
-        //     ]
-        // }
     }
 
     static propTypes = {
@@ -49,9 +28,9 @@ export default class MessageField extends React.Component {
         },
 
         messages: {
-            1: { text: 'Hello', sender: 'Darth Vader' },
-            2: { text: 'I am your father', sender: 'Darth Vader' },
-            3: { text: "Nooooo", sender: 'Вася Петечкин' },
+            1: { text: 'Сообщение чата №1', sender: 'Darth Vader' },
+            2: { text: 'Сообщение чата №2', sender: 'Darth Vader' },
+            3: { text: "Сообщение чата №3", sender: 'Вася Петечкин' },
         },
         
         input: '',
@@ -99,20 +78,6 @@ export default class MessageField extends React.Component {
         this.textInput.current.focus();
         this.msgField.current.scrollTop = this.msgField.current.scrollHeight;
     }
-
-    //     //Метод для ответа Бота
-    // componentDidUpdate() {
-    //     if (this.state.messages.length % 2 === 1) {
-    //         setTimeout(() => {
-    //             this.setState({
-    //                 messages: [...this.state.messages, {
-    //                     sender: 'bot',
-    //                     text: `${this.state.messages[this.state.messages.length-1].sender}, I am a Bot and I know it!`
-    //                 }]
-    //             })
-    //         }, 1000)
-    //     }
-    // }
     
     render() {
         const { messages, chats } = this.state;
