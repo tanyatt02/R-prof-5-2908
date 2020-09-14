@@ -99,20 +99,6 @@ export default class MessageField extends React.Component {
         this.textInput.current.focus();
         this.msgField.current.scrollTop = this.msgField.current.scrollHeight;
     }
-
-    //     //Метод для ответа Бота
-    // componentDidUpdate() {
-    //     if (this.state.messages.length % 2 === 1) {
-    //         setTimeout(() => {
-    //             this.setState({
-    //                 messages: [...this.state.messages, {
-    //                     sender: 'bot',
-    //                     text: `${this.state.messages[this.state.messages.length-1].sender}, I am a Bot and I know it!`
-    //                 }]
-    //             })
-    //         }, 1000)
-    //     }
-    // }
     
     render() {
         const { messages, chats } = this.state;
