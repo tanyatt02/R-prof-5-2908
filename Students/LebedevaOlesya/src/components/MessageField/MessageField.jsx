@@ -11,6 +11,7 @@ export default class MessageField extends Component {
     constructor(props) {
         super(props);
         this.textInput = React.createRef();
+        this.msgField = React.createRef();
         this.state = {
             text: '',
             // sender: '',

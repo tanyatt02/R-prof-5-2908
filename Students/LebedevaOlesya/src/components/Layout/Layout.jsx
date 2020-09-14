@@ -13,18 +13,12 @@ export default class Layout extends Component {
         chatId: 1,
     };
 
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //     }
-    // }
-
     render() {
         return (
             <div className="Layout d-flex row">
                 <Header chatId={this.props.chatId} />
                 <ChatList />
-                <MessageField name="Me" />
+                <MessageField name="Me" chatId={ this.props.chatId }/>
             </div>
         )
     }
