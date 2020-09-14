@@ -18,6 +18,7 @@ export default class InputComp extends Component {
             this.setState({ text: evt.target.value });
         } else {
             this.props.send(this.state.text);
+            this.setState({ text: '' });
         }
     }
 
@@ -37,9 +38,9 @@ export default class InputComp extends Component {
                     style={ {fontSize: '22px', margin: '0 0 20px 0', width: '80%'} }
                     onChange={ this.handleChange }
                     onKeyUp={ this.handleChange }
-                    value={ this.state.text }
-                        />
-                <FloatingActionButton onClick = { this.sendM }>Send</FloatingActionButton>
+                    value={ text }
+                />
+                <FloatingActionButton send = { this.sendM }>Send</FloatingActionButton>
             </div>
         )
     }

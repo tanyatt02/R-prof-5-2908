@@ -5,9 +5,9 @@ import { StylesProvider, createGenerateClassName } from '@material-ui/core/style
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './layout/css/styles.css';
 
-import MessageField from './components/MessageField/MessageField.jsx';
+import MessageField from './components/MainField/MainField.jsx';
 import ChatList from './components/ChatList/ChatList.jsx';
-import FieldNew from './components/MessageFieldNew/MessageFieldNew.jsx';
+import MainField from './components/MainField/MainField.jsx';
 
 const container = document.getElementById('app');
 
@@ -18,7 +18,7 @@ ReactDom.render(
                 <ChatList />
             </div>
             <div className="messages-wrp">
-                <MessageField name="Rick"/>
+                <MainField name="Rick"/>
                 
             </div>
         </div>
