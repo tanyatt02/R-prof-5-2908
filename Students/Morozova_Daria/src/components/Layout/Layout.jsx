@@ -2,6 +2,7 @@ import './style.css';
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
+import Header from '../Header/Header.jsx';
 import ChatList from '../ChatList/ChatList.jsx';
 import MainField from '../MainField/MainField.jsx';
 
@@ -20,9 +21,12 @@ export default class Layout extends Component {
     render() {
 
         return (
+            <Fragment >
+                <Header chatId = { this.props.chatId } />
             <StylesProvider>
-                <h1>Chat { this.props.chatId } </h1>
+                
                 <div className="d-flex w-100 justify-content-center">
+                    {/* <Header chatId = { this.props.chatId } /> */}
                     <div className="chatList-wrp">
                         <ChatList id = { this.props.chatId } />
                     </div>
@@ -32,6 +36,7 @@ export default class Layout extends Component {
                     </div>
                 </div>
             </StylesProvider>
+            </Fragment>
         )
     }
 }
