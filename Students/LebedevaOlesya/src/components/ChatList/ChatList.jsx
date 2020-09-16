@@ -1,37 +1,74 @@
 import './style.css';
 import React, { Component, Fragment } from 'react';
 import ChatsDialog from '../ChatsDialog/ChatsDialog.jsx';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { List, ListItem } from 'material-ui/List';
 import ContentSend from 'material-ui/svg-icons/content/send';
+import PropTypes from "prop-types";
+import AddIcon from 'material-ui/svg-icons/content/add';
+import { TextField } from 'material-ui';
 
-        
-        
 export default class ChatList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            //
+    static propTypes = {
+        chats: PropTypes.object.isRequired,
+        addChat: PropTypes.func.isRequired,
+    };
+
+    state = {
+        input: '',
+    }; 
+
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
+    };
+ 
+    handleKeyUp = (event) => {
+        if (event.keyCode === 13) { // Enter
+            this.handleAddChat();
         }
-    }
+    };
+ 
+    handleAddChat = () => {
+        if (this.state.input.length > 0) {
+            this.props.addChat(this.state.input);
+            this.setState({ input: '' });
+        }
+    };
+
     render() {
+        const { chats } = this.props;
+        const chatElements = Object.keys(chats).map(chatId => (
+            <Link 
+                key={ chatId } 
+                to={ `/chat/${chatId}` }>
+                <ListItem
+                    primaryText={ chats[chatId].title }
+                    leftIcon={ <ContentSend /> } 
+                />
+            </Link>)
+        );
         return (
             <div className="ChatList d-flex flex-column">
-                <div>
-                    <List className='list'>
-                        <Link to="/chat/1/">
-                            <ListItem primaryText="Chat 1" leftIcon={<ContentSend />} />
-                        </Link>
-                        <Link to="/chat/2/">
-                            <ListItem primaryText="Chat 2" leftIcon={<ContentSend />} />
-                        </Link>
-                        <Link to="/chat/3/">
-                            <ListItem primaryText="Chat 3" leftIcon={<ContentSend />} />
-                        </Link>
-                    </List>
-                </div>
+               <List className='list'>
+                    { chatElements }
+                    <ListItem
+                        key="Add new chat"
+                        leftIcon={ <AddIcon /> }
+                        onClick={ this.handleAddChat }
+                        style={ { height: '60px' } }
+                        children= {
+                            <TextField
+                                key="textField"
+                                fullWidth
+                                name="input"
+                                hintText="Добавить новый чат"
+                                onChange={ this.handleChange }
+                                value={ this.state.input }
+                                onKeyUp={ this.handleKeyUp }
+                            />
+                        }
+                    />
+                </List> 
                 <div>
                     <ChatsDialog />
                 </div>
