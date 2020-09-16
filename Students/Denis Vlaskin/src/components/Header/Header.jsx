@@ -1,11 +1,21 @@
 import './style.css';
 import React from 'react';
+import PropTypes from "prop-types";
 
-export default props => {
+export default class Header extends React.Component {
+    static propTypes = {
+        chatId: PropTypes.number
+    };
 
-    return (
-        <div className='header'>
-            Multichat messenger
-        </div>
-    )
+    static defaultProps = {
+        chatId: 1
+    }
+
+    render() {
+        return (
+            <div className='header'>
+                <span style={ { fontSize: '20px' } }>Чат { this.props.chatId }</span>
+            </div>
+        )
+    }
 }
