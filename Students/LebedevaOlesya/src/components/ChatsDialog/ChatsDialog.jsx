@@ -14,6 +14,8 @@ import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
 import cyan from '@material-ui/core/colors/cyan';
 import Button from '@material-ui/core/Button';
+import ContentSend from 'material-ui/svg-icons/content/send';
+import ChatsDialog from '../ChatsDialog/ChatsDialog.jsx';
 
 
 const emails = [
