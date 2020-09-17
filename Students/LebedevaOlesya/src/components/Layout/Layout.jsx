@@ -4,22 +4,22 @@ import PropTypes from "prop-types";
 import MessageField from '../MessageField/MessageField.jsx';
 import ChatList from '../ChatList/ChatList.jsx';
 import Header from '../Header/Header.jsx';
+import { bindActionCreators } from "redux";
+import connect from "react-redux/es/connect/connect";
+import { sendMessage } from "../../store/actions/messageActions";
 
-export default class Layout extends Component {
+class Layout extends Component {
     static propTypes = {
         chatId: PropTypes.number,
+        sendMessage: PropTypes.func.isRequired,
     };
+
     static defaultProps = {
         chatId: 1,
     };
 
     state = {
-        chats: {
-            1: {title: 'Чат 1', messageList: [1,4]},
-            2: {title: 'Чат 2', messageList: [2,5]},
-            3: {title: 'Чат 3', messageList: [3,6]},
-        },
-
+    
         messages: {
             1: { text: 'Сообщение чата №1', sender: 'Сергей Сергеев' },
             2: { text: 'Сообщение чата №2', sender: 'Маша Машина' },
@@ -41,24 +41,25 @@ export default class Layout extends Component {
     }
 
     sendMessage = (message, sender) => {
-        const { messages, chats, input } = this.state;
+        const { messages } = this.state;
         const { chatId } = this.props;
  
         const messageId = Object.keys(messages).length + 1;
         this.setState({
-            messages: {...messages, [messageId]: {text: message, sender: sender}}, 
-            chats: {...chats, [chatId]: { ...chats[chatId], messageList: [...chats[chatId]['messageList'], messageId]}},
-        })
+            messages: {...messages,
+                [messageId]: {text: message, sender: sender}},
+        });
+        this.props.sendMessage(messageId, message, sender, chatId);
     };
 
-    addChat = (title) => {
-        const { chats } = this.state;
-        const chatId = Object.keys(chats).length + 1;
-        this.setState({
-            chats: {...chats,
-                [chatId]: {title: title, messageList: []}},
-        })
-    }; 
+    // addChat = (title) => {
+    //     const { chats } = this.state;
+    //     const chatId = Object.keys(chats).length + 1;
+    //     this.setState({
+    //         chats: {...chats,
+    //             [chatId]: {title: title, messageList: []}},
+    //     })
+    // }; 
 
     render() {
         return (
@@ -69,9 +70,9 @@ export default class Layout extends Component {
                     addChat={ this.addChat }
                 />
                 <MessageField 
-                    name="Me" 
+                    // name="Me" 
                     chatId={ this.props.chatId }
-                    chats={ this.state.chats }
+                    // chats={ this.state.chats }
                     messages={ this.state.messages }
                     sendMessage={ this.sendMessage }
                 />
@@ -79,3 +80,8 @@ export default class Layout extends Component {
         )
     }
 }
+const mapStateToProps = ({}) => ({});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

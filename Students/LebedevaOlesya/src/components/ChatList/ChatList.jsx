@@ -1,5 +1,7 @@
 import './style.css';
 import React, { Component, Fragment } from 'react';
+import {bindActionCreators} from "redux";
+import connect from "react-redux/es/connect/connect";
 import ChatsDialog from '../ChatsDialog/ChatsDialog.jsx';
 import { Link } from 'react-router-dom';
 import { List, ListItem } from 'material-ui/List';
@@ -7,8 +9,9 @@ import ContentSend from 'material-ui/svg-icons/content/send';
 import PropTypes from "prop-types";
 import AddIcon from 'material-ui/svg-icons/content/add';
 import { TextField } from 'material-ui';
+import { addChat } from '../../store/actions/chatActions';
 
-export default class ChatList extends Component {
+class ChatList extends Component {
     static propTypes = {
         chats: PropTypes.object.isRequired,
         addChat: PropTypes.func.isRequired,
@@ -55,7 +58,7 @@ export default class ChatList extends Component {
                         key="Add new chat"
                         leftIcon={ <AddIcon /> }
                         onClick={ this.handleAddChat }
-                        style={ { height: '60px' } }
+                        style={ { height: '60px', width: '80%' } }
                         children= {
                             <TextField
                                 key="textField"
@@ -76,3 +79,12 @@ export default class ChatList extends Component {
         )
     }
 }
+
+const mapStateToProps = ({ chatReducer }) => ({
+    chats: chatReducer.chats,
+ });
+ 
+ const mapDispatchToProps = dispatch => bindActionCreators({ addChat }, dispatch);
+ 
+ export default connect(mapStateToProps, mapDispatchToProps)(ChatList);
+ 

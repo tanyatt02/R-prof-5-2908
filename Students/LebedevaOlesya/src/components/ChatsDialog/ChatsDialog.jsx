@@ -56,7 +56,7 @@ function SimpleDialog(props) {
 
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Change the Chat</DialogTitle>
+      <DialogTitle id="simple-dialog-title">Выбрать чат</DialogTitle>
       <List>
         {emails.map((email) => (
           <ListItem button onClick={() => handleListItemClick(email)} key={email}>
@@ -106,7 +106,7 @@ export default function SimpleDialogDemo() {
     <div>
       {/* <Typography variant="subtitle1">Current Chat: {selectedValue}</Typography>
       <br /> */}
-      <Button className={classes.root} onClick={handleClickOpen}>Open Chat's List</Button>
+      <Button className={classes.root} onClick={handleClickOpen}>Открыть список чатов</Button>
       <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
     </div>
   );
