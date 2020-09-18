@@ -1,22 +1,22 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import ReactDom from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './layout/css/styles.css';
-import Layout from './components/Layout/Layout.jsx';
 import { BrowserRouter } from 'react-router-dom';
-import Router from './components/Router/Router.jsx';
+import Router from './Router.jsx';
+import { Provider } from 'react-redux';
+import initStore from './store';
 
 const container = document.getElementById('app');
 
 ReactDom.render(
-    <BrowserRouter>
-        <MuiThemeProvider>
-            <Router />
-            {/* <Fragment>
-                <Layout />
-            </Fragment> */}
-        </MuiThemeProvider>
-    </BrowserRouter>,
+    <Provider store={ initStore() }>
+        <BrowserRouter>
+            <MuiThemeProvider>
+                <Router />
+            </MuiThemeProvider>
+        </BrowserRouter>
+    </Provider>,
     container,
  );

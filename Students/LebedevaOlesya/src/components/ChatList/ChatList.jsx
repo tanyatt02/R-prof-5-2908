@@ -1,46 +1,90 @@
 import './style.css';
 import React, { Component, Fragment } from 'react';
-// import ChatsDilog from '../ChatsDilog/ChatsDilog.jsx';
-// import Typography from '@material-ui/core/Typography';
-// import Box from '@material-ui/core/Box';
+import {bindActionCreators} from "redux";
+import connect from "react-redux/es/connect/connect";
+import ChatsDialog from '../ChatsDialog/ChatsDialog.jsx';
 import { Link } from 'react-router-dom';
 import { List, ListItem } from 'material-ui/List';
 import ContentSend from 'material-ui/svg-icons/content/send';
+import PropTypes from "prop-types";
+import AddIcon from 'material-ui/svg-icons/content/add';
+import { TextField } from 'material-ui';
+import { addChat } from '../../store/actions/chatActions';
 
-        
-        
-export default class ChatList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            //
+class ChatList extends Component {
+    static propTypes = {
+        chats: PropTypes.object.isRequired,
+        addChat: PropTypes.func.isRequired,
+    };
+
+    state = {
+        input: '',
+    }; 
+
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
+    };
+ 
+    handleKeyUp = (event) => {
+        if (event.keyCode === 13) { // Enter
+            this.handleAddChat();
         }
-    }
-    render() {
-        return (
-            <List>
-                <Link to="/chat/1/">
-                    <ListItem primaryText="Chat 1" leftIcon={<ContentSend />} />
-                </Link>
-                <Link to="/chat/2/">
-                    <ListItem primaryText="Chat 2" leftIcon={<ContentSend />} />
-                </Link>
-                <Link to="/chat/3/">
-                    <ListItem primaryText="Chat 3" leftIcon={<ContentSend />} />
-                </Link>
-            </List>
-        ) 
+    };
+ 
+    handleAddChat = () => {
+        if (this.state.input.length > 0) {
+            this.props.addChat(this.state.input);
+            this.setState({ input: '' });
+        }
+    };
 
-        // return (
-        //     <Fragment>
-        //         <Box className="ChatList d-flex flex-column col-3" color="primary.contrastText">
-        //             {/* chat-list */}
-        //             <div>
-        //                 <ChatsDilog />
-        //             </div>
-        //         </Box>
-        //     </Fragment>
-        // )
+    render() {
+        const { chats } = this.props;
+        const chatElements = Object.keys(chats).map(chatId => (
+            <Link 
+                key={ chatId } 
+                to={ `/chat/${chatId}` }>
+                <ListItem
+                    primaryText={ chats[chatId].title }
+                    leftIcon={ <ContentSend /> } 
+                />
+            </Link>)
+        );
+        return (
+            <div className="ChatList d-flex flex-column">
+               <List className='list'>
+                    { chatElements }
+                    <ListItem
+                        key="Add new chat"
+                        leftIcon={ <AddIcon /> }
+                        onClick={ this.handleAddChat }
+                        style={ { height: '60px', width: '80%' } }
+                        children= {
+                            <TextField
+                                key="textField"
+                                fullWidth
+                                name="input"
+                                hintText="Добавить новый чат"
+                                onChange={ this.handleChange }
+                                value={ this.state.input }
+                                onKeyUp={ this.handleKeyUp }
+                            />
+                        }
+                    />
+                </List> 
+                <div>
+                    <ChatsDialog />
+                </div>
+            </div>
+        )
     }
 }
-    
+
+const mapStateToProps = ({ chatReducer }) => ({
+    chats: chatReducer.chats,
+ });
+ 
+ const mapDispatchToProps = dispatch => bindActionCreators({ addChat }, dispatch);
+ 
+ export default connect(mapStateToProps, mapDispatchToProps)(ChatList);
+ 
