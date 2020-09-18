@@ -9,6 +9,9 @@ import './layout/css/styles.css';
 import { BrowserRouter } from 'react-router-dom';
 import Router from './router.jsx';
 
+import { Provider } from 'react-redux';
+import initStore from './store';
+
 // import ChatList from './components/ChatList/ChatList.jsx';
 // import MainField from './components/MainField/MainField.jsx';
 
@@ -26,12 +29,13 @@ ReactDom.render(
     //         </div>
     //     </div>
     // </StylesProvider>
-    <BrowserRouter>
-        
-            <Router />
-        
-    </BrowserRouter>
-   
+    <Provider store = { initStore() } >
+        <BrowserRouter>
+            
+                <Router />
+            
+        </BrowserRouter>
+    </Provider>
     ,
     container
 )

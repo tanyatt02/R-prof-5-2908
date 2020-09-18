@@ -1,0 +1,1 @@
+export let SEND_MSG = '@@messages/SEND';

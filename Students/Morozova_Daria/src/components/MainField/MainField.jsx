@@ -3,36 +3,39 @@ import React, { Component } from 'react';
 
 import InputComp from '../Input/Input.jsx';
 import FieldComp from '../MessageField/MessageField.jsx';
+import { connect } from 'react-redux';
 
-export default class MainField extends Component {
+
+// export default 
+class MainField extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            messages: [
-                {
-                    sender: 'Vasya',
-                    text: 'Ciao!',
-                },
-                {
-                    sender: 'Petr',
-                    text: 'Hello!',
-                },
-                {
-                    sender: null,
-                    text: 'Privet!',
-                },
-                {
-                    sender: 'Ann',
-                    text: 'Guten tag!',
-                }
-            ],
+            // messages: [
+                // {
+                //     sender: 'Vasya',
+                //     text: 'Ciao!',
+                // },
+                // {
+                //     sender: 'Petr',
+                //     text: 'Hello!',
+                // },
+                // {
+                //     sender: null,
+                //     text: 'Privet!',
+                // },
+                // {
+                //     sender: 'Ann',
+                //     text: 'Guten tag!',
+                // }
+            // ],
             sendFunc: this.sendMessage.bind(this),
         }
     }
 
     sendMessage = (text) => {
         this.setState({
-            messages: [...this.state.messages, 
+            messages: [...this.props.messages, 
                 {
                     sender: '',
                     text: text
@@ -43,12 +46,12 @@ export default class MainField extends Component {
 
     componentDidUpdate() {
         setTimeout(() => {
-            if (this.state.messages[this.state.messages.length-1].sender !== 'Bot') {
+            if (this.props.messages[this.props.messages.length-1].sender !== 'Bot') {
                 this.setState({
-                    messages: [...this.state.messages, 
+                    messages: [...this.props.messages, 
                         {
                             sender: 'Bot',
-                            text: `${this.state.messages[this.state.messages.length-1].sender !== '' ? this.state.messages[this.state.messages.length-1].sender : 'Anonim'}, what do you want from me?`
+                            text: `${this.props.messages[this.props.messages.length-1].sender !== '' ? this.props.messages[this.props.messages.length-1].sender : 'Anonim'}, what do you want from me?`
                         }
                     ]
                 })
@@ -65,3 +68,9 @@ export default class MainField extends Component {
         )
     }
 }
+
+const mapStateToProps = ({ messageReducer }) => ({
+    messages: messageReducer.messages
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainField);
