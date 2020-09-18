@@ -1,20 +1,40 @@
 import './style.css';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from "redux";
+import connect from "react-redux/es/connect/connect";
 
 import MessageField from '../MessageField/MessageField.jsx';
 import ChatList from '../ChatList/ChatList.jsx';
 import Header from '../Header/Header.jsx';
+import { sendMessage } from '../../actions/messageActions';
 
-export default class Layout extends React.Component {
+class Layout extends React.Component {
     static propTypes = {
-        chatId: PropTypes.number
+        chatId: PropTypes.number,
+        sendMessage: PropTypes.func.isRequired,
+        messages: PropTypes.object.isRequired
     };
 
     static defaultProps = {
         chatId: 1
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        const { messages } = this.props;
+        if (Object.keys(prevState.messages).length < Object.keys(messages).length &&
+            Object.values(messages)[Object.values(messages).length - 1].sender === 'me') {
+            setTimeout(() =>
+                this.sendMessage('Не приставай ко мне, я робот!', 'bot'), 1000);
+        }
+    }
+ 
+    sendMessage = (message, sender) => {
+        const { chatId } = this.props;
+ 
+        this.props.sendMessage(message, sender, chatId);
+    };
+ 
     render() {
         return (
                 <div className="layout">
@@ -24,10 +44,19 @@ export default class Layout extends React.Component {
                             <ChatList />
                         </div>
                         <div className="layout-right-side">
-                            <MessageField chatId={ this.props.chatId } />
+                            <MessageField 
+                                chatId={ this.props.chatId } 
+                                messages={ this.props.messages }
+                                sendMessage={ this.sendMessage }
+                            />
                         </div>
                     </div>
                 </div>
         )
     }
 }
+
+const mapStateToProps = ({ chatReducer }) => ({ messages: chatReducer.messages });
+const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);

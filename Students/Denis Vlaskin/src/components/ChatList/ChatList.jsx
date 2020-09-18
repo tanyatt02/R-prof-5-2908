@@ -1,64 +1,77 @@
 import './style.css';
 import React, { Component, Fragment } from 'react';
+import { bindActionCreators } from "redux";
+import connect from "react-redux/es/connect/connect";
 import { Link } from 'react-router-dom';
 import { List, ListItem } from 'material-ui/List';
-import Chat from '../Chat/Chat.jsx';
 import ContentSend from 'material-ui/svg-icons/content/send';
+import AddIcon from 'material-ui/svg-icons/content/add';
+import PropTypes from 'prop-types';
+import { TextField } from '@material-ui/core';
+import { addChat } from '../../actions/chatActions';
 
-import ChatsDialog from '../ChatsDialog/ChatsDialog.jsx';
+class ChatList extends React.Component {
 
-export default class ChatList extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            chats: [],
-            addNewChat: this.addChat.bind(this),
+    static propTypes = {
+        chats: PropTypes.object.isRequired,
+        addChat: PropTypes.func.isRequired
+    };
+
+    state = {
+        input: ''
+    }
+
+    handleAddChat = () => {
+        if (this.state.input.length > 0){
+            this.props.addChat(this.state.input);
+            this.setState({ input: '' });
         }
-        
+    };
+
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
     }
 
-    addChat = (name) => {
-        this.setState({
-            chats: [...this.state.chats, {
-                    name: name,
-                    messages: '0 messages',
-                }
-            ],
-        });
-    }
-
-    componentDidUpdate() {
-        this.render();
+    handleKeyUp = (event) => {
+        if (event.keyCode === 13){
+            this.handleAddChat();
+        }
     }
 
     render() {
-        let { chats } = this.state;
-        let chatsArray = chats.map((chat, index) => {
-            let { name, messages } = chat;
-            return <Chat name = { name } messages = { messages } key = { index }/>
-        });
+        const { chats } = this.props;
+
+        const chatsElements = Object.keys(chats).map(chatId => (
+            <Link key={ chatId } to={ `/chat/${chatId}` }>
+                <ListItem 
+                    primaryText={ chats[chatId].title }
+                    leftIcon={ <ContentSend /> } />
+            </Link>));
 
         return (
-            <Fragment>
-                <div className="chatList d-flex flex-column">
-                    <List>
-                        <Link to="/chat/1/">
-                            <ListItem primaryText="Chat 1" leftIcon={<ContentSend />} />
-                        </Link>
-                        <Link to="/chat/2/">
-                            <ListItem primaryText="Chat 2" leftIcon={<ContentSend />} />
-                        </Link>
-                        <Link to="/chat/3/">
-                            <ListItem primaryText="Chat 3" leftIcon={<ContentSend />} />
-                        </Link>
-                    </List>
-
-                    { chatsArray }
-                    <div>
-                        <ChatsDialog addFunction={ this.state.addNewChat } />
-                    </div>
-                </div>
-            </Fragment>
+                <List>
+                    { chatsElements }
+                    <ListItem
+                        key="Add new chat"
+                        leftIcon={ <AddIcon />}
+                        onClick={ this.handleAddChat }
+                        style={ { height: '60px' } }
+                        children={ <TextField
+                            key="textField"
+                            fullWidth
+                            name="input"
+                            hintText="Добавить новый чат"
+                            onChange={ this.handleChange }
+                            value={ this.state.input }
+                            onKeyUp={ this.handleKeyUp }
+                        />}
+                    />
+                </List>
         )
     }
 }
+
+const mapStateToProps = ({ chatReducer }) => ({ chats: chatReducer.chats });
+const mapDispatchToProps = dispatch => bindActionCreators({ addChat }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatList);
