@@ -1,16 +1,29 @@
 
-        import './style.css';
-        import React from 'react';
+import './style.css';
+import React from 'react';
 
-        export default props => {
-            let { sender, text} = props;
+export default props => {
+    let { sender, text} = props;
 
-            return (
-                <div className="msg d-flex flex-column">
-                    { sender && <strong>{ sender }</strong> }
-                    { !sender && <strong>LUKE S.</strong> }
-                    <p>{ sender || (!sender && text) ? text: 'Cyber answer...'}</p>
-                </div>
-            )
-        }
+    if ( text.length < 1 ) {
+        return null;
+    } else {
+        return (
+            <div className="msg d-flex" style={{ alignSelf: sender === 'Me' ? 'flex-end' : 'flex-start'}}>
+                <div className="message-text">{ text }</div>
+                <div className="message-sender">~{ sender }</div>
+            </div>
+        )
+    }
+
+    // return (
+    //     <div className="msg d-flex" style={ { alignSelf: sender === 'Me' ? 'flex-end' : 'flex-start' } }>
+    //         <p className="message-text" >{ sender || (!sender && text) ? text: 'Cyber answer...'}</p>
+    //         <div className="message-sender"> ~ 
+    //             { sender && <strong>{ sender }</strong> }
+    //             { !sender && <strong>Bot</strong> }
+    //         </div>
+    //     </div>
+    // )
+}
     

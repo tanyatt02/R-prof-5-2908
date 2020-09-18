@@ -1,0 +1,19 @@
+.msg {
+    padding: 5px 15px;
+    font-size: 18px;
+    margin: 5px;
+}
+
+.msg-bot {
+    align-self: flex-start;
+    background-color: lightgreen;
+    border-radius: 20px;
+    width: 70%;
+}
+
+.msg-person {
+    align-self: flex-end;
+    background-color: lightblue;
+    border-radius: 20px;
+    width: 70%;
+}

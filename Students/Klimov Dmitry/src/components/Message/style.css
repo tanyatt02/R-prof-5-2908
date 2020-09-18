@@ -1,0 +1,16 @@
+.msg {
+    background-color: lightblue;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 18px;
+    margin: 5px;
+    max-width: 70%;
+}
+
+.send{
+    align-self: flex-end;
+    margin-left: 20px;
+}
+.answer{
+    align-self: flex-start;
+}

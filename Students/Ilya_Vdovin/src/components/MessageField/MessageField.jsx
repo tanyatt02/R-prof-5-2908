@@ -49,9 +49,11 @@ export default class MessageField extends Component {
     }
 
     handleChange = evt => {
-        this.setState({ text: evt.target.value });
-        // this.state.text = evt.target.value // NO REACTIVITY
-    }
+        if (evt.keyCode !== 13) {
+            this.setState({ text: evt.target.value });
+        } else {
+            this.sendMessage();
+        }}
 
     sendMessage = () => {
         this.setState({ 
@@ -65,7 +67,7 @@ export default class MessageField extends Component {
     }
 
     componentDidUpdate(){
-        if (this.state.messages.length % 2 === 1) {  
+        if (this.state.messages.length % 2 === 1 && this.state.text === "") {  
             setTimeout(() =>
             this.setState(
                 { messages: [ ...this.state.messages, '' ] }),
@@ -96,10 +98,11 @@ export default class MessageField extends Component {
                 </div>
                 <div className="controls d-flex">
                     <input 
-                        className="inputField"
+                        className="max-width 500 inputField"
                         type="text"
                         placeholder="Answer something here" 
                         value = { this.state.text }
+                        onKeyUp = { this.handleChange }
                         onChange = { this.handleChange }
                     />
                     <button className="inputButton" onClick = { this.sendMessage }>Send</button>
