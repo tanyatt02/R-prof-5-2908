@@ -1,33 +1,22 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ReactDom from 'react-dom';
-
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './layout/css/styles.css';
-
-import MessageField from './components/MessageField/MessageField.jsx';
+import Layout from './components/Layout/Layout.jsx';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './components/Router/Router.jsx';
 
 const container = document.getElementById('app');
 
 ReactDom.render(
-    <div>
-        <MessageField name="Darth Vader"/>
-    </div>,
-    container
-)
-
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-
-
-// let messages = ['Привет', 'Как дела?'];
-
-// const MessageComponent = (props) => <div>{props.text}</div>;
-
-// const MessageField = (props) => {
-//    return props.messages.map(message => <MessageComponent text={ message } />);
-// };
-
-// ReactDOM.render(
-//    <MessageField messages={ messages } />,
-//    document.getElementById('app'),
-// );
+    <BrowserRouter>
+        <MuiThemeProvider>
+            <Router />
+            {/* <Fragment>
+                <Layout />
+            </Fragment> */}
+        </MuiThemeProvider>
+    </BrowserRouter>,
+    container,
+ );

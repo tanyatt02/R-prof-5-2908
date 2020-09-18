@@ -5,3 +5,8 @@
     font-size: 18px;
     margin: 5px;
 }
+
+.msg-sender {
+    color: gray;
+    font-size: 14px;
+}

@@ -1,0 +1,27 @@
+.msgField {
+  background-color: #41007d;
+  padding: 50px;
+  border-radius: 15px;
+
+  .controls {
+
+    input {
+      background-color: transparent;
+      border: 1px solid #d159f1;
+      border-radius: 15px;
+      outline: none;
+      color: #ffffff;
+      padding-left: 15px;
+    }
+
+    button {
+      background-color: transparent;
+      outline: none;
+      border: none;
+
+      .fa-paper-plane {
+        color: #ffffff;
+      }
+    }
+  }
+}

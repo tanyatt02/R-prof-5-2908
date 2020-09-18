@@ -33,8 +33,8 @@ class MessageField extends React.Component {
         });
     }
 
-    componentDidUpdate() {
-        if (this.state.messages.length > 0 && this.state.messages[this.state.messages.length - 1].sender != 'bot') {
+    componentDidUpdate(prevProps, prevState) { //Аргументы содержат props и state до их обновления
+        if (prevState.messages.length < this.state.messages.length && this.state.messages[this.state.messages.length - 1].sender != 'bot') {
             setTimeout(() =>
                     this.setState(
                         {
