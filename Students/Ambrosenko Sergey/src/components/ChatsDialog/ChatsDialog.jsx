@@ -13,7 +13,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
 import { blue } from '@material-ui/core/colors';
 
-const emails = ['Чат 1', 'Чат 2', 'Чат 3'];
+const emails = ['Барак Хусейн Обама', 'Александр III', 'Фидель Кастро'];
 //documentation https://material-ui.com/ru/styles/api/#makestyles-styles-options-hook
 const useStyles = makeStyles({
   avatar: {
@@ -30,7 +30,7 @@ function SimpleDialog(props) {
   const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
-    onClose(selectedValue);
+    onClose();
   };
 
   const handleListItemClick = (value) => {
@@ -42,7 +42,7 @@ function SimpleDialog(props) {
       <DialogTitle id="simple-dialog-title">Выберите чат</DialogTitle>
       <List>
         {emails.map((email) => (
-          <ListItem button onClick={() => handleListItemClick(email)} key={email}>
+          <ListItem button onClick={ () => handleListItemClick(email) } key={email} >
             <ListItemAvatar>
               <Avatar className={classes.avatar}>
                 <PersonIcon />
@@ -58,7 +58,7 @@ function SimpleDialog(props) {
               <AddIcon />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary="Добавить новый чат"  className={ classes.testClass }/>
+          <ListItemText primary="Добавить новый чат" className={ classes.testClass }/>
         </ListItem>
       </List>
     </Dialog>
@@ -71,7 +71,7 @@ SimpleDialog.propTypes = {
   selectedValue: PropTypes.string.isRequired,
 };
 
-export default function SimpleDialogDemo() {
+export default function SimpleDialogDemo(props) {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[0]);
 
@@ -82,6 +82,9 @@ export default function SimpleDialogDemo() {
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
+    if (value) {
+        props.addChat(value);
+    }
   };
 
   return (
@@ -89,7 +92,7 @@ export default function SimpleDialogDemo() {
       <Button variant="outlined" onClick={handleClickOpen} style={ { outline: 'none', color: 'white', borderColor: 'white' } }>
         Добавить чат
       </Button>
-      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose}/>
     </div>
   );
 }
