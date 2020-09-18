@@ -58,13 +58,14 @@ class ChatList extends Component {
                         key="Add new chat"
                         leftIcon={ <AddIcon /> }
                         onClick={ this.handleAddChat }
-                        style={ { height: '60px', width: '80%' } }
+                        style={ { height: '60px', width: '90%' } } 
                         children= {
                             <TextField
                                 key="textField"
                                 fullWidth
                                 name="input"
                                 hintText="Добавить новый чат"
+                                style={ { fontSize: '16px', alignItems: 'top'} }
                                 onChange={ this.handleChange }
                                 value={ this.state.input }
                                 onKeyUp={ this.handleKeyUp }
