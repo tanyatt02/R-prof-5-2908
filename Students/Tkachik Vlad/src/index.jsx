@@ -1,20 +1,15 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
 import { BrowserRouter } from 'react-router-dom';
 
+import Router from './router.jsx';
 import './layout/css/styles.css';
-import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
-
-import Chat from "./components/Chat/Chat.jsx";
-
-/*console.log(`User name : ${this.props.userName}`);*/
-
-
 
 ReactDom.render (
     <BrowserRouter>
         <StylesProvider>
-            <Chat />
+            <Router/>
         </StylesProvider>
     </BrowserRouter>,
     document.querySelector('.container')
