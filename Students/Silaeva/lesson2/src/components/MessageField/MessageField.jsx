@@ -1,5 +1,5 @@
 
-        import './style.css';
+import './style.css';
         import React, { Component, Fragment } from 'react';
 
         import Message from '../Message/Message.jsx';
@@ -11,20 +11,20 @@
                     text: '',
                     messages: [
                         {
-                            sender: 'Dear',
+                            sender: 'Maks',
                             text: 'Hello'
                         },
                         {
                             sender: 'Maks',
-                            text: 'Call me later'
+                            text: 'Call me later, am busy'
                         },
                         {
                             sender: null,
                             text: 'Hello'
                         },
                         {
-                            sender: 'What',
-                            text: 'Nooooooo'
+                            sender: 'null',
+                            text: 'Nooooooo, I need right NOW'
                         }
                     ]
                 
@@ -38,7 +38,6 @@
                     this.sendMessage();
                 }
                 
-                // this.state.text = evt.target.value // NO REACTIVITY
             }
 
             sendMessage = () => {
@@ -63,11 +62,6 @@
                     let { text, sender } = msg;
                     return <Message text = { text } sender = { sender } key = { index }/>
                 });
-
-                // let contentArray = Object.keys(messages).map(key => {
-                //     let { text, sender } = messages[key];
-                //     return <Message text = { text } sender = { sender } key = { key }/>
-                // });
         
                 return (
                     <div className="d-flex flex-column">

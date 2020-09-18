@@ -4,13 +4,25 @@ import ReactDom from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './layout/css/styles.css';
 
-import MessageField from './components/MessageField/MessageField.jsx';
+// import MessageField from './components/MessageField/MessageField.jsx';
+// import ChatList from './components/ChatList/ChatList.jsx';
+// import TestComp from './components/Comp/Comp.jsx';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './router.jsx';
+
+import MuiThemeProvider from '@material-ui/styles/ThemeProvider/'
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
 
 const container = document.getElementById('app');
-
+const theme = {};
 ReactDom.render(
-    <div>
-        <MessageField name="Darth Vader"/>
-    </div>,
+    <BrowserRouter>
+        {/* <MuiThemeProvider theme = { theme }> */}
+            <Router />
+        {/* </MuiThemeProvider> */}
+    </BrowserRouter>
+    ,
     container
 )
