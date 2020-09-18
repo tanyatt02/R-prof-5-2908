@@ -1,36 +1,44 @@
 
-        import './style.css';
-        import React, { Component, Fragment } from 'react';
-        
-        import ChatsDialog from '../ChatsDialog/ChatsDialog.jsx';
-        import List from '@material-ui/core/List';
-        import ListItemText from '@material-ui/core/ListItemText';
-        import SendIcon from '@material-ui/core/SvgIcon';
+import './style.css';
+import React, { Component, Fragment } from 'react';
 
-        export default class ChatList extends Component {
-            constructor(props) {
-                super(props);
-                this.state = {
-                    //
-                }
-            }
+import { Link } from 'react-router-dom';
         
-            render() {
-                // let { some } = this.state;
-        
-                return (
-                    
-                    <div>
-                            <List>
-                                <ListItemText primary="Chat 1" />
-                                <ListItemText primary="Chat 2" />
-                                <ListItemText primary="Chat 3" />
-                            </List>
+import ChatsDialog from '../ChatsDialog/ChatsDialog.jsx';
+import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import SendTwoToneIcon from '@material-ui/icons/SendTwoTone';
 
-                        
-                            <ChatsDialog />
-                    </div>
-                )
-            }
-        }
+export default class ChatList extends Component {
+    // constructor(props) {
+    // super(props);
+    // }
+        
+    render() {
+        
+        return (
+            <div>
+                <List>
+                    <Link to = '/chat/1'>
+                        <ListItem>
+                        <ListItemIcon><SendTwoToneIcon />
+                        </ListItemIcon><ListItemText primary="Chat 1" />
+                        </ListItem>
+                    </Link>
+                    <Link to = '/chat/2'>
+                        <ListItem>
+                        <ListItemIcon><SendTwoToneIcon /></ListItemIcon><ListItemText primary="Chat 2" />
+                        </ListItem>
+                    </Link>
+                    <Link to = '/chat/3'>
+                        <ListItem>
+                        <ListItemIcon><SendTwoToneIcon />
+                        </ListItemIcon><ListItemText primary="Chat 3" />
+                        </ListItem>
+                    </Link>
+                </List>
+                <ChatsDialog />
+            </div>
+        )
+    }
+}
     

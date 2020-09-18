@@ -4,22 +4,18 @@ import ReactDom from 'react-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './layout/css/styles.css';
 
-import Layout from './components/Layout/Layout.jsx';
+import Router from './router.jsx';
+import { BrowserRouter} from 'react-router-dom';
+// import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 
-import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
+// import Layout from './components/Layout/Layout.jsx';
+
 
 const container = document.getElementById('app');
 
 ReactDom.render(
-    <StylesProvider>
-        <div>
-            <div>
-                <Layout />
-            </div>
-            {/* <div>
-                <MessageField name="Magistr Yoda"/>
-            </div> */}
-        </div>
-    </StylesProvider>,
+    <BrowserRouter>
+        <Router />
+    </BrowserRouter>,
     container
 )

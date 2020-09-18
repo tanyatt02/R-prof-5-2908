@@ -8,7 +8,7 @@ import FloatingActionButton from '../FloatingActionButton/FloatingActionButton.j
 export default class MessageField extends Component {
     constructor(props) {
         super(props);
-        this.textInput = React.createRef();
+        // this.textInput = React.createRef();
         this.state = {
             messages: [
                 {
@@ -32,9 +32,9 @@ export default class MessageField extends Component {
         }
     }
 
-    componentDidMount() {
-        this.textInput.current.focus();
-    }
+    // componentDidMount() {
+    //     this.textInput.current.focus();
+    // }
 
     
     handleClick = (message) => {
@@ -93,17 +93,18 @@ export default class MessageField extends Component {
                 </div>
                 <div className="button-wrap">
                     <TextField 
-                        ref={ this.textInput }
+                        // ref={ this.textInput }
                         // type="text"
                         name="input"
+                        autoFocus={ true }
                         fullWidth={ true }
-                        hintText="Введите сообщение"
+                        helperText="Введите сообщение"
                         style={ { fontSize: '22px' } }
                         value = { this.state.input }
                         onChange = { this.handleChange }
                         onKeyUp = { (evt) => this.handleKeyUp(evt, this.state.input) }
                     />
-                    <FloatingActionButton onClick = { () => this.sendMessage(this.state.input,) }></FloatingActionButton>
+                    <FloatingActionButton onClick = { () => this.handleClick(this.state.input) }></FloatingActionButton>
                 </div>
             </div>
         )
