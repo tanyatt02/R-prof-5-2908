@@ -10,38 +10,58 @@ export default class MessageField extends React.Component {
         super(props);
         this.state = {
             text: '',
-            messages: [
-                {
-                    sender: 'Darth Vader',
-                    text: 'Hello',
-                    isUser:false
+            chats: {
+                1: {
+                    name: 'Darth Vader',
+                    messages: [
+                        {
+                            sender: 'Darth Vader',
+                            text: 'Hello',
+                            isUser:false
+                        },
+                        {
+                            sender: 'Darth Vader',
+                            text: 'I am your father',
+                            isUser:false
+                        },
+                        {
+                            sender: 'Luke',
+                            text: 'Hello',
+                            isUser:false
+                        },
+                        {
+                            sender: 'Luke',
+                            text: 'Nooooooo',
+                            isUser:false
+                        },
+                        {
+                            sender: 'Luke',
+                            text: 'Nooooooo',
+                            isUser:false
+                        },
+                        {
+                            sender: 'Luke',
+                            text: 'Nooooooo',
+                            isUser:false
+                        },
+                    ]
                 },
-                {
-                    sender: 'Darth Vader',
-                    text: 'I am your father',
-                    isUser:false
+                2: {
+                    name: 'Chub aka',
+                    messages: [
+                        {
+                            sender: 'Chub aka',
+                            text: 'WHAT',
+                            isUser:false
+                        }
+                    ],
                 },
-                {
-                    sender: 'Luke',
-                    text: 'Hello',
-                    isUser:false
-                },
-                {
-                    sender: 'Luke',
-                    text: 'Nooooooo',
-                    isUser:false
-                },
-                {
-                    sender: 'Luke',
-                    text: 'Nooooooo',
-                    isUser:false
-                },
-                {
-                    sender: 'Luke',
-                    text: 'Nooooooo',
-                    isUser:false
-                },
-            ],
+                3: {
+                    name: '',
+                    messages: []
+                }
+            },
+            currentChat: {},
         }
     }
 
@@ -54,15 +74,22 @@ export default class MessageField extends React.Component {
     }
 
     sendMessage = () => {
-        this.setState({
-            text: '',
-            messages: [...this.state.messages, {
-                sender: this.props.userName,
+        this.setState((state) => {
+            return (
+                state.currentChat.messages = [...state.currentChat.messages, {
+                sender: this.props.name,
                 text: this.state.text,
-                isUser: true
-            }
-            ],
+                    isUser: true,
+            }]
+            )
         });
+        this.setState({
+            text: ''
+        })
+    }
+
+    componentWillMount() {
+        this.state.currentChat = this.state.chats[this.props.chatId];
     }
 
     componentDidMount() {
@@ -75,10 +102,15 @@ export default class MessageField extends React.Component {
         container.scrollTop =  container.scrollHeight;
     }
 
-    render() {
-        let { messages } = this.state;
+    componentWillUpdate(nextProps, nextState, nextContext) {
+        this.state.currentChat = this.state.chats[this.props.chatId];
+        console.log(this.state.currentChat);
+    }
 
-        let contentArray = messages.map((msg, index) => {
+    render() {
+        const { currentChat } = this.state;
+
+        let contentArray = currentChat.messages.map((msg, index) => {
             let { text, sender, isUser } = msg;
             return <Message text = { text }
                             sender = { sender }
