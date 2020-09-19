@@ -10,7 +10,7 @@ export default class MessagesField extends Component {
 			text: '',
 			messages: [
 				{
-					sender: 'ReactJS',
+					sender: 'Bot',
 					text: 'Hello, I,m React!'
 				}
 			]
@@ -28,13 +28,17 @@ export default class MessagesField extends Component {
 	}
 
 	handleChange = event => {
-		this.setState({ text: event.target.value });
+		if (event.keyCode !== 13) {
+			this.setState({ text: event.target.value });
+		} else {
+			this.sendMessage();
+		}
+		// this.setState({ text: event.target.value });
 	}
 
-	componentDidUpdate() {
+	componentDidUpdate(prevProps, prevState) {
 		let lastMsg = this.state.messages[this.state.messages.length - 1];
-		if (lastMsg.sender !== 'Bot') {
-			console.log(lastMsg.sender);
+		if (prevState.messages.length < this.state.messages.length && lastMsg.sender !== 'Bot') {
 			setTimeout(() => {
 				this.setState({
 					text: '',
@@ -55,13 +59,12 @@ export default class MessagesField extends Component {
 		})
 
 		return (
-			<div className="d-flex flex-column content">
-				<h1>React Messager</h1>
-				<div>
+			<div className="d-flex flex-column content message-field-wrapper">
+				<div className="message-field">
 					{ contentArr }
 				</div>
 				<div className="controls d-flex">
-					<input type="text" value = { this.state.text } onChange = { this.handleChange }/>
+					<input type="text" value = { this.state.text } onChange = { this.handleChange } onKeyUp = { this.handleChange }/>
 					<button onClick = { this.sendMessage }>Send</button>
 				</div>
 			</div>
