@@ -1,1 +1,20 @@
-.ChatList {}
+.chat-List {
+    padding: 1.5% 2% 1.5% 1.5%;
+    width: 25%;
+    background-color: #d87575;
+    margin-bottom: 50px;
+}
+
+.chat-link {
+    color: rgb(31, 29, 29);
+    margin: 5px 0 5px 0;
+}
+
+.chat-link:hover {
+    color: rgb(38, 5, 129);
+    text-decoration: none;
+}
+
+.chat-link:active {
+    color: rgb(206, 78, 78);
+}
