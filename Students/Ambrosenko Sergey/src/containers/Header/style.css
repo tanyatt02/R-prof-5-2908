@@ -13,18 +13,27 @@
     margin-left: 16.65px;
 }
 
-.profile {
+.header-profile {
+    display: flex;
+    align-items: center;
     margin-right: 16.65px;
     align-self: center;
     font-size: 18px;
     color: white;
 }
 
-.profile:hover {
+.header-profile a {
+    color: white;
+    margin-left: 5px;
+}
+
+.header-profile:hover,
+.header-profile:hover a {
     color: #000;
     text-decoration: none;
 }
 
-.profile:active {
+.header-profile:active,
+.header-profile:active a {
     color: white;
 }
