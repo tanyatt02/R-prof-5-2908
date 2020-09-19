@@ -19,18 +19,18 @@ export default function chatReducer(store = initialStore, action) {
    switch (action.type) {
        case SEND_MESSAGE: {
         const messageId = Object.keys(store.messages).length + 1;
-           update(store, {
+           return update(store, {
                messages: { $merge: { [messageId]: {
                     text: action.text,
                     sender: action.sender
                }}}
            });
-           return update(store, {
-               chats: { $merge: { [action.chatId]: {
-                   title: store.chats[action.chatId].title,
-                   messageList: [...store.chats[action.chatId].messageList, messageId]
-               } } },
-           });
+        //    update(store, {
+        //        chats: { $merge: { [action.chatId]: {
+        //            title: store.chats[action.chatId].title,
+        //            messageList: [...store.chats[action.chatId].messageList, messageId]
+        //        } } },
+        //    });
        }
        case ADD_CHAT: {
            const chatId = Object.keys(store.chats).length + 1;

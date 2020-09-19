@@ -20,19 +20,19 @@ class Layout extends React.Component {
         chatId: 1
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        const { messages } = this.props;
-        if (Object.keys(prevState.messages).length < Object.keys(messages).length &&
-            Object.values(messages)[Object.values(messages).length - 1].sender === 'me') {
-            setTimeout(() =>
-                this.sendMessage('Не приставай ко мне, я робот!', 'bot'), 1000);
-        }
-    }
+    // componentDidUpdate(prevProps, prevState) {
+    //     const { messages } = this.props;
+    //     if (Object.keys(messages).length < Object.keys(messages).length &&
+    //         Object.values(messages)[Object.values(messages).length - 1].sender === 'me') {
+    //         setTimeout(() =>
+    //             this.sendMessage('Не приставай ко мне, я робот!', 'bot'), 1000);
+    //     }
+    // }
  
     sendMessage = (message, sender) => {
         const { chatId } = this.props;
  
-        this.props.sendMessage(message, sender, chatId);
+        this.props.sendMessage(message, sender);
     };
  
     render() {
