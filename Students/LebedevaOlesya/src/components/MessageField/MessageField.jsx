@@ -73,27 +73,27 @@ class MessageField extends React.Component {
             />));
 
         return (
-            <div className="layout-msg-field col-9" key='contentArray'>
+            <div className="layout-msg-field col-9 d-flex flex-column" key='contentArray'>
                 <div className="message-field" ref={ this.msgField }>
-                    { contentArray }
-                    <div className="controls d-flex pt-3 align-items-center align-self-end" >
-                        <TextField
-                            id="input"
-                            // ref={ this.textInput }
-                            fullWidth={ true }
-                            name="input"
-                            hintText="Message"
-                            type="text"
-                            value={ this.state.input }
-                            onChange={ this.handleChange}
-                            onKeyUp={ this.handleKeyUp }
-                        />
-                        <FloatingActionButton
-                            mini={true} style={{ boxShadow: 'none' }}
-                            onClick={ () => this.handleSendMessage(this.state.input, 'Me') } >
-                            <SendIcon />
-                        </FloatingActionButton>
-                    </div>
+                    { contentArray } 
+                </div>
+                <div className="controls d-flex pt-3 align-items-center w-100" >
+                    <TextField
+                        id="input"
+                        // ref={ this.textInput }
+                        fullWidth={ true }
+                        name="input"
+                        hintText="Message"
+                        type="text"
+                        value={ this.state.input }
+                        onChange={ this.handleChange}
+                        onKeyUp={ this.handleKeyUp }
+                    />
+                    <FloatingActionButton
+                        mini={true} style={{ boxShadow: 'none' }}
+                        onClick={ () => this.handleSendMessage(this.state.input, 'Me') } >
+                        <SendIcon />
+                    </FloatingActionButton>
                 </div>
             </div>
         )
