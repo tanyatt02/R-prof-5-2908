@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let messages = {
+            1: {
+                t: 'qwe',
+                s: 'bot'
+            },
+            2: {
+                t: 'qwe2',
+                s: 'bot'
+            },
+            3: {
+                t: 'qwe3',
+                s: 'bot'
+            },
+        }
+
+        // [{t: 'qwe', s: 'bot', id: 1}, {}]
+        // let msgArr = Object.keys(messages).map(index => {
+        //     let msg = messages[index];
+        //     msg.id = index;
+        //     return msg;
+        // })
+
+        // let msgArr = Object.entries(messages).map(([key, msg]) => {
+        //     msg.id = key;
+        //     return msg;
+        // })
+
+        // let msgArr = Object.entries(messages).map(([key, msg]) => ({id: key, s: msg.s, t: msg.t }))
+        let msgArr = Object.entries(messages).map(([key, msg]) => Object.assign({}, msg, { id: key }))
+
+        console.log(msgArr)
+    </script>
+</body>
+</html>

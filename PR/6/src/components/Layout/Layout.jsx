@@ -21,10 +21,10 @@
                 
                 return (
                     <StylesProvider>
-                        <h1>Chat: { this.props.chatId }</h1>
+                        <h1>Chat: { this.props.chatTitle }</h1>
                         <div className="d-flex w-100 justify-content-center">
                             <div>
-                                <ChatList id = { this.props.chatId }/>
+                                <ChatList />
                             </div>
                             <div>
                                 <MessageField name="12345"/>

@@ -4,7 +4,7 @@ import Message from "./Message.jsx";
 const Messages = (props) => {
     let messages
 
-    if (props.chatId===undefined){
+    if (!props.chatId) { 
         messages = props.messages[1].messageList;
     } else {
         messages = props.messages[props.chatId].messageList;
