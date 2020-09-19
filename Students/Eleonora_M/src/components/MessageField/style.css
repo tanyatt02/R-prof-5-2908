@@ -1,73 +1,32 @@
-.message-field {
-    display: flex;
-    flex-direction: column;
-    background-color: #e2e2e2;
-    height: 50%;
-    width: 100%;
-    padding: 20px;
-       
- }
+.MsgField {
+   display: flex;
+   flex-direction: column;
+   background-color: #ffffff;
+   height: 50em;
+   width: 100%;
+   padding: 20px;
+   margin-bottom: 5px;
+   overflow-y: scroll;
+}
 
 .layout {
-    height: 100%;
-    width: 30%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    
+   width: 75%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
 }
-.Msg_Field{
-    display: flex;
-    flex-direction: column;
-    background-color: #e2e2e2;
-    height: 100%;
-    min-height: 400px;
-    width: 100%;
-    padding: 20px;
-    margin-bottom: 5px;
-    overflow-y: scroll;
-}
-.send_Btn{
-    width: 100%;
-    outline: none;
-    background-color: rgb(220, 220, 220);
-    font-family: cursive, sans-serif;
-    font-size: 20px;
-    border-radius: 10px;
-    color: #026322;
-    
-}
-.send_Btn:hover{
-    background-color:rgb(207, 221, 226);
-    outline: none;
+
+.sendBtn {
+   border: 0;
+   border-radius: 50%;
   
 }
-.send_Btn:active{
-    outline: none;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-input[type=text] {
-    
-    padding: 12px 15px;
-    margin: 5px 0;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-}
-input[type=text]:hover {
-    border: 2px solid#70b185;
-}
-input[type=text]:focus {
-    background-color: rgb(207, 221, 226);
+
+.sendBtn:hover {
+   box-shadow: 0px 2px 5px 0px currentColor;
 }
 
- 
- 
- 
-
-
-
-
- 
+.controls {
+   width: 100%;
+}
