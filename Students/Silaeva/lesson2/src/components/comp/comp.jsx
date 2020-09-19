@@ -1,57 +1,51 @@
 import './style.css';
 
-import React, { Component } from 'react';
+import React from 'react';
+import { Component } from 'react';
+import InputComp from '../CompInputTest/comp.jsx';
+import FieldComp from '../CompFieldTest/comp.jsx';
 
 export default class Comp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            test: true
+            messages: [
+                {
+                    sender: 'Anton',
+                    text: 'Hello'
+                },
+                {
+                    sender: 'Anton',
+                    text: 'Can u call me now?'
+                },
+                {
+                    sender: null,
+                    text: 'Hello'
+                },
+                {
+                    sender: null,
+                    text: 'Nooooooo'
+                }
+            ]
         }
     }
 
-    handleClick = () => {
-        // console.log(this.state.test)
+    sendMessage = (text) => {
         this.setState({
-            test: !this.state.test
-        })
+            messages: [...this.state.messages, {
+                    sender: this.props.name,
+                    text: text
+                } 
+            ]
+        });
     }
 
     render() {
-        let { test } = this.state;
-
         return (
-            <div className="test">
-                <button onClick={ this.handleClick }>Toggle</button>
-
-                <br/>
-
-                {
-                    test && 
-                    <div>
-                        <h1>Test = true</h1>
-                    </div>
-                }
-
-                {
-                    !test && 
-                    <div>
-                        <h1>Test = false</h1>
-                    </div>
-                }
+            <div className="d-flex flex-column">
+               <FieldComp messages = { this.state.messages } />
+               <InputComp send = { this.sendMessage } />
             </div>
         )
     }
 }
-
-// export default props => {
-//     // let name = props.name;
-//     let { name } = props;
-
-//     return (
-//         <div className="d-flex flex-column justify-content-center align-items-center">
-//             <h2>Something from react-component</h2>
-//             <p className="red">Hello { name }</p>
-//         </div>
-//     )
-// }

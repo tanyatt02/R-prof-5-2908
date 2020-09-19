@@ -14,7 +14,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
 
-const emails = ['firsthat', 'secondchat',];
+const emails = ['username@gmail.com', 'user02@gmail.com', 'test@lol.net'];
 //documentation https://material-ui.com/ru/styles/api/#makestyles-styles-options-hook
 const useStyles = makeStyles({
   avatar: {
