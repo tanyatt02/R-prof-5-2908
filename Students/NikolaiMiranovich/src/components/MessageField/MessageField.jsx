@@ -1,100 +1,59 @@
 import './style.css';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import { TextField } from '@material-ui/core';
+import { Fab, TextField } from '@material-ui/core';
+import SendIcon from '@material-ui/icons/Send';
 import Message from '../Message/Message.jsx';
-import Button from '../Button/Button.jsx';
 
 export default class MessageField extends Component {
-    constructor(props) {
-        super(props);
-        // this.textInput = React.createRef();
-        this.state = {
-            messages: [
-                {
-                    sender: 'bot',
-                    text: 'Hello'
-                },
-                {
-                    sender: 'bot',
-                    text: 'I am your father'
-                },
-                {
-                    sender: null,
-                    text: 'Hello'
-                },
-                {
-                    sender: null,
-                    text: 'Nooooooo'
-                }
-            ],
-            input: '',
-        }
-    }
-
-    // componentDidMount() {
-    //     this.textInput.current.focus();
-    // }
-
-    
-    handleClick = (message) => {
-        this.sendMessage(message)
+    static propTypes = {
+        chatId: PropTypes.number.isRequired,
+        messages: PropTypes.object.isRequired,
+        chats: PropTypes.object.isRequired,
+        sendMessage: PropTypes.func.isRequired,
     };
 
-    handleChange = evt => {
-        this.setState({ [evt.target.name]: evt.target.value });
+    state = {
+        input: '',
+    }
+        
+
+        handleSendMessage = (message, sender) => {
+            if (this.state.input.length > 0 || sender === 'bot') {
+                this.props.sendMessage(message, sender);
+            }
+            if (sender === 'me') {
+                this.setState({ input: '' });
+    }
+}
+
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
     }
 
-    handleKeyUp = (evt, message) => {
-        if (evt.keyCode ===13) {
-            this.sendMessage(message)
+    handleKeyUp = (event) => {
+        if (event.keyCode === 13) {
+            this.handleSendMessage(this.state.input, 'me')
         } 
     }
 
-    sendMessage = (message) => {
-        this.setState({ 
-            messages: [...this.state.messages, {
-                    sender: 'me',
-                    text: message
-                } 
-            ],
-            input: '',
-        });
-    }
-
-    componentDidUpdate() {
-        if (this.state.messages[this.state.messages.length -1].sender === 'me') {
-            setTimeout(() =>
-                this.setState(
-                    { messages: [ ...this.state.messages, {text: 'Не беси меня, я робот!', sender: 'bot'} ] }), 1000);
-        }
-    }
-
     render() {
-        const messageElements = this.state.messages.map((message, index) => (
-            <Message key={ index } text={ message.text } sender={ message.sender } />
-        ));
-        // let { messages } = this.state;
+        const { chatId, messages, chats } = this.props;
 
-        // let contentArray = messages.map((msg, index) => {
-        //     let { text, sender } = msg;
-        //     return <Message text = { text } sender = { sender } key = { index }/>
-        // });
+        const messageElements = chats[chatId].messageList.map(messageId => (
+            <Message
+            key={ messageId }
+            text={ messages[messageId].text }
+            sender={ messages[messageId].sender }
+        />))
 
-        // let contentArray = Object.keys(messages).map(key => {
-        //     let { text, sender } = messages[key];
-        //     return <Message text = { text } sender = { sender } key = { key }/>
-        // });
-
-        return (
-            <div className="layout">
-                <div className="message-field">
+        return [
+                <div key='messageElements' className="message-field">
                     { messageElements }
-                </div>
-                <div className="button-wrap">
+                </div>,
+                <div key='textInput' className="button-wrap">
                     <TextField 
-                        // ref={ this.textInput }
-                        // type="text"
                         name="input"
                         autoFocus={ true }
                         fullWidth={ true }
@@ -102,11 +61,10 @@ export default class MessageField extends Component {
                         style={ { fontSize: '22px' } }
                         value = { this.state.input }
                         onChange = { this.handleChange }
-                        onKeyUp = { (evt) => this.handleKeyUp(evt, this.state.input) }
+                        onKeyUp = { this.handleKeyUp }
                     />
-                    <Button onClick = { () => this.handleClick(this.state.input) }></Button>
+                    <Fab color="secondary" onClick = { () => this.handleSendMessage(this.state.input, 'me') }><SendIcon /></Fab>
                 </div>
-            </div>
-        )
+        ]
     }
 }

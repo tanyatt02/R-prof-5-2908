@@ -1,14 +1,15 @@
-.layout {
+.layout-field {
     height: 100%;
     width: auto;
     margin: auto;
     /* display: flex;
     align-items: center;
     flex-direction: column; */
- }
+}
 
  .message-field{
     height: 100%;
+    background-color: mediumturquoise;
     border: 2px solid black;
     display: flex;
     flex-direction: column;
