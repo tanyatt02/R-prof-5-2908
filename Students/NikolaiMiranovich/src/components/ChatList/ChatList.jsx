@@ -1,11 +1,10 @@
-
 import './style.css';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import { Link } from 'react-router-dom';
         
 import ChatsDialog from '../ChatsDialog/ChatsDialog.jsx';
-import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
+import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core/';
 import SendTwoToneIcon from '@material-ui/icons/SendTwoTone';
 
 export default class ChatList extends Component {

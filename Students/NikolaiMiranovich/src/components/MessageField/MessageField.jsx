@@ -1,9 +1,9 @@
 import './style.css';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 
 import { TextField } from '@material-ui/core';
 import Message from '../Message/Message.jsx';
-import FloatingActionButton from '../FloatingActionButton/FloatingActionButton.jsx';
+import Button from '../Button/Button.jsx';
 
 export default class MessageField extends Component {
     constructor(props) {
@@ -104,7 +104,7 @@ export default class MessageField extends Component {
                         onChange = { this.handleChange }
                         onKeyUp = { (evt) => this.handleKeyUp(evt, this.state.input) }
                     />
-                    <FloatingActionButton onClick = { () => this.handleClick(this.state.input) }></FloatingActionButton>
+                    <Button onClick = { () => this.handleClick(this.state.input) }></Button>
                 </div>
             </div>
         )
