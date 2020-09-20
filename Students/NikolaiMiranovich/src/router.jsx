@@ -7,12 +7,13 @@ export default class Router extends React.Component {
     render() {
         return (
             <Switch>
+                <Route exact path='/' component={ Layout } />
                 <Route exact path='/chat/1/' render={ () =>
-                    <Layout chatId={ 1 } /> } />
+                   <Layout chatId={ 1 } /> } />
                 <Route exact path='/chat/2/' render={ () =>
-                    <Layout chatId={ 2 } /> } />
+                   <Layout chatId={ 2 } /> } />
                 <Route exact path='/chat/3/' render={ () =>
-                    <Layout chatId={ 3 } /> } />
+                   <Layout chatId={ 3 } /> } />
             </Switch>
         )
     }
