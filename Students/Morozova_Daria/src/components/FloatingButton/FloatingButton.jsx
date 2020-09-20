@@ -12,6 +12,10 @@ const useStyles = makeStyles((theme) => ({
   extendedIcon: {
     marginRight: theme.spacing(1),
   },
+  openBtn: {
+    backgroundColor: '#bdc1ff',
+    color: '#555',
+  }
 }));
 
 export default function FloatingActionButtons(props) {
@@ -19,7 +23,7 @@ export default function FloatingActionButtons(props) {
   const { send } = props;
   return (
     <div className={classes.root}>
-      <Fab color="primary" aria-label="add" onClick={ send } >
+      <Fab color="primary" aria-label="add" onClick={ send } className={ classes.openBtn }>
         <SendIcon />
       </Fab>
     </div>

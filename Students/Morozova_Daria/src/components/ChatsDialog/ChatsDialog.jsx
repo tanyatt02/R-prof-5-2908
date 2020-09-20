@@ -20,6 +20,10 @@ const useStyles = makeStyles({
   avatar: {
     backgroundColor: blue[100],
     color: blue[600],
+  },
+  openBtn: {
+    color: '#bdc1ff',
+    border: '1px solid rgba(189, 193, 255, .5)',
   }
 });
 
@@ -74,6 +78,8 @@ export default function SimpleDialogDemo(props) {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
+  const classes = useStyles();
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -88,7 +94,7 @@ export default function SimpleDialogDemo(props) {
     <div>
       {/* <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
       <br /> */}
-      <Button variant="outlined" color="primary" onClick={handleClickOpen} >
+      <Button variant="outlined" color="primary" onClick={handleClickOpen} className={ classes.openBtn }>
         Open new chat
       </Button>
       <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />

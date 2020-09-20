@@ -1,24 +1,19 @@
 .message-field {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    height: 70%;
+    height: 70vh;
     width: 100%;
     padding: 30px;
-    border: 1px solid #eda410;
-    border-right: none;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
     margin: 20px;
-    background-color: white;
     overflow-y: scroll;
 }
 
 .layout-msg-field {
-    height: 100%;
+    border: 1px solid #eda410;
+    background-color: white;
     width: 100%;
-    margin: 0;
-    padding: 0;
+    margin: auto 0;
+    padding: 10px;
     display: flex;
     align-items: center;
     flex-direction: column;

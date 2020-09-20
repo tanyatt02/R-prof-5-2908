@@ -1,15 +1,20 @@
 import './style.css';
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 export default props => {
+    let { id } = props;
     let { name, messages } = props;
+    let pathId = `/chat/${id}/`;
 
     return (
         <Fragment>
-            <div className="chat d-flex flex-column">
-                <span className="chatName">{ name }</span>
-                <p className="chatMsgs">{ messages }</p>
-            </div>
+            <Link to = { pathId } >
+                <div className="chat d-flex flex-column">
+                    <span className="chatName">{ name }</span>
+                    <p className="chatMsgs">{ messages }</p>
+                </div>
+            </Link>
         </Fragment>
     )
 }

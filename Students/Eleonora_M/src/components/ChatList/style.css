@@ -1,1 +1,16 @@
-.ChatList {}
+.chat-List {
+    width: 25%;
+    margin-bottom: 50px;
+}
+
+.chat-link {
+    color: rgb(6, 75, 23);
+    font-size: 20px;
+    margin: 5px 0 5px 0;
+}
+
+.chat-link:hover {
+    color: rgb(26, 89, 226);
+    text-decoration: none;
+}
+

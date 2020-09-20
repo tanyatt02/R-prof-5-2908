@@ -4,7 +4,7 @@ import React from 'react';
 export default props => {
     let { sender, text } = props;
 
-    const className = "d-flex flex-column msg " + ((sender == 'Chatbot') ? "msg-bot" : "msg-person");
+    const className = "d-flex flex-column msg " + ((sender == 'bot') ? "msg-bot" : "msg-person");
 
     return (
             <div className={ className }>

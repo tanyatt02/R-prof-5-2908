@@ -1,6 +1,7 @@
 import './style.css';
 import React from 'react';
 
+
 export default props => {
     let { sender, text } = props;
 

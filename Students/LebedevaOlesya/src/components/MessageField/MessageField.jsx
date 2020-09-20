@@ -45,22 +45,22 @@ class MessageField extends React.Component {
     };
 
     // Ставим фокус на <input> при монтировании компонента
-    componentDidMount() {
-        this.textInput.current.focus();
-        this.msgField.current.scrollTop = this.msgField.current.scrollHeight;
-    }
+    // componentDidMount() {
+    //     this.textInput.current.focus();
+    //     this.msgField.current.scrollTop = this.msgField.current.scrollHeight;
+    // }
 
-    componentDidUpdate(prevProps, prevState) {
-        // const { messages } = this.state;
-        // if (Object.keys(prevState.messages).length < Object.keys(messages).length &&
-        //     Object.values(messages)[Object.values(messages).length - 1].sender === 'Me' && 
-        //     Object.values(messages)[Object.values(messages).length - 2].sender !== 'Me') {
-        //     setTimeout(() =>
-        //         this.sendMessage('Не приставай ко мне, я робот!', 'Bot'), 1000);
-        // }
-        this.textInput.current.focus();
-        this.msgField.current.scrollTop = this.msgField.current.scrollHeight;
-    }
+    // componentDidUpdate(prevProps, prevState) {
+    //     const { messages } = this.state;
+    //     if (Object.keys(prevState.messages).length < Object.keys(messages).length &&
+    //         Object.values(messages)[Object.values(messages).length - 1].sender === 'Me' && 
+    //         Object.values(messages)[Object.values(messages).length - 2].sender !== 'Me') {
+    //         setTimeout(() =>
+    //             this.sendMessage('Не приставай ко мне, я робот!', 'Bot'), 1000);
+    //     }
+    //     this.textInput.current.focus();
+    //     this.msgField.current.scrollTop = this.msgField.current.scrollHeight;
+    // }
     
     render() {
         const { chatId, messages, chats } = this.props;
@@ -73,27 +73,27 @@ class MessageField extends React.Component {
             />));
 
         return (
-            <div className="layout-msg-field col-9" key='contentArray'>
+            <div className="layout-msg-field col-9 d-flex flex-column" key='contentArray'>
                 <div className="message-field" ref={ this.msgField }>
-                    { contentArray }
-                    <div className="controls d-flex pt-3 align-items-center align-self-end" >
-                        <TextField
-                            id="input"
-                            ref={ this.textInput }
-                            fullWidth={ true }
-                            name="input"
-                            hintText="Message"
-                            type="text"
-                            value={ this.state.input }
-                            onChange={ this.handleChange}
-                            onKeyUp={ this.handleKeyUp }
-                        />
-                        <FloatingActionButton
-                            mini={true} style={{ boxShadow: 'none' }}
-                            onClick={ () => this.handleSendMessage(this.state.input, 'Me') } >
-                            <SendIcon />
-                        </FloatingActionButton>
-                    </div>
+                    { contentArray } 
+                </div>
+                <div className="controls d-flex pt-3 align-items-center w-100" >
+                    <TextField
+                        id="input"
+                        // ref={ this.textInput }
+                        fullWidth={ true }
+                        name="input"
+                        hintText="Message"
+                        type="text"
+                        value={ this.state.input }
+                        onChange={ this.handleChange}
+                        onKeyUp={ this.handleKeyUp }
+                    />
+                    <FloatingActionButton
+                        mini={true} style={{ boxShadow: 'none' }}
+                        onClick={ () => this.handleSendMessage(this.state.input, 'Me') } >
+                        <SendIcon />
+                    </FloatingActionButton>
                 </div>
             </div>
         )
@@ -106,4 +106,4 @@ const mapStateToProps = ({ chatReducer }) => ({
  
  const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
  
- export default connect(mapStateToProps, mapDispatchToProps)(MessageField); 
+ export default connect(mapStateToProps, mapDispatchToProps)(MessageField);
