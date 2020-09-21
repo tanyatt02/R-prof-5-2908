@@ -1,7 +1,7 @@
 .message-field {
     display: flex;
     flex-direction: column;
-    height: 70vh;
+    height: 60vh;
     width: 100%;
     padding: 30px;
     margin: 20px;
@@ -10,6 +10,9 @@
 
 .layout-msg-field {
     border: 1px solid #eda410;
+    border-right: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
     background-color: white;
     width: 100%;
     margin: auto 0;
@@ -26,6 +29,7 @@
     border-bottom: 1px solid rgb(247,204,114,0.24);
     transition: height 200ms cubic-bezier(47,204,114,0.24) 0ms;
 }
- /* .send-btn {
-     display: block !important;
- } */
+
+.controls {
+    width: 70%;
+}

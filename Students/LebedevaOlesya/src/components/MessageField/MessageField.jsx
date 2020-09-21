@@ -51,13 +51,6 @@ class MessageField extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        // const { messages } = this.state;
-        // if (Object.keys(prevState.messages).length < Object.keys(messages).length &&
-        //     Object.values(messages)[Object.values(messages).length - 1].sender === 'Me' && 
-        //     Object.values(messages)[Object.values(messages).length - 2].sender !== 'Me') {
-        //     setTimeout(() =>
-        //         this.sendMessage('Не приставай ко мне, я робот!', 'Bot'), 1000);
-        // }
         this.textInput.current.focus();
         this.msgField.current.scrollTop = this.msgField.current.scrollHeight;
     }
@@ -77,10 +70,10 @@ class MessageField extends React.Component {
                 <div className="message-field" ref={ this.msgField }>
                     { contentArray } 
                 </div>
-                <div className="controls d-flex pt-3 align-items-center w-100" >
+                <div className="controls d-flex pt-3 align-items-center align-self-end" >
                     <TextField
-                        id="input"
-                        // ref={ this.textInput }
+                        id="standard-basic"
+                        ref={ this.textInput }
                         fullWidth={ true }
                         name="input"
                         hintText="Message"
