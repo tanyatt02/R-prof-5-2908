@@ -29,7 +29,7 @@ export default class Layout extends Component {
                             <ChatList  />
                         </div>
                         <div className="messages-wrp">
-                            <MainField name="Me"/>
+                            <MainField name="me"/>
                             
                         </div>
                     </div>

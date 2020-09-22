@@ -46,7 +46,7 @@ class ChatList extends Component {
         let {chats} = this.props; 
 
         let linksArr = chats.map(ch =>  
-            <Link to = {`/chat/${ch.id}/`}>
+            <Link to = {`/chat/${ch.id}/`} key = {ch.id}>
                 <Item name={ch.title} />
             </Link>)
 
