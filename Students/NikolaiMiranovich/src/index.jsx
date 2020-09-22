@@ -7,12 +7,17 @@ import './layout/css/styles.css';
 import Router from './router.jsx';
 import { BrowserRouter } from 'react-router-dom';
 
+import { Provider } from 'react-redux';
+import initStore from './utils/store.js';
+
 
 const container = document.getElementById('app');
 
 ReactDom.render(
-    <BrowserRouter>
-        <Router />
-    </BrowserRouter>,
+    <Provider store={ initStore() }>
+        <BrowserRouter>
+            <Router />
+        </BrowserRouter>
+    </Provider>,
     container
 )

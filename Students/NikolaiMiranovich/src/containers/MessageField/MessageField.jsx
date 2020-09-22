@@ -2,11 +2,14 @@ import './style.css';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { bindActionCreators } from 'redux';
+import connect from 'react-redux/es/connect/connect';
+
 import { Fab, TextField } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import Message from '../Message/Message.jsx';
 
-export default class MessageField extends Component {
+class MessageField extends Component {
     static propTypes = {
         chatId: PropTypes.number.isRequired,
         messages: PropTypes.object.isRequired,
@@ -52,7 +55,7 @@ export default class MessageField extends Component {
                 <div key='messageElements' className="message-field">
                     { messageElements }
                 </div>,
-                <div key='textInput' className="button-wrap">
+                <div key='textInput' style={ { width: '100%', display: 'flex' } }>
                     <TextField 
                         name="input"
                         autoFocus={ true }
@@ -60,7 +63,7 @@ export default class MessageField extends Component {
                         helperText="Введите сообщение"
                         style={ { fontSize: '22px' } }
                         value = { this.state.input }
-                        onChange = { this.handleChange }
+                         onChange = { this.handleChange }
                         onKeyUp = { this.handleKeyUp }
                     />
                     <Fab color="secondary" onClick = { () => this.handleSendMessage(this.state.input, 'me') }><SendIcon /></Fab>
@@ -68,3 +71,11 @@ export default class MessageField extends Component {
         ]
     }
 }
+
+const mapStateToProps = ({ chatReducer }) => ({
+    chats: chatReducer.chats,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps) (MessageField);

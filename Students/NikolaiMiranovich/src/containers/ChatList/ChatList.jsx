@@ -1,6 +1,10 @@
 import './style.css';
 import React, { Component } from 'react';
 
+import { bindActionCreators } from 'redux';
+import connect from 'react-redux/es/connect/connect';
+import { addChat } from '../../actions/chatActions.js';
+
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
@@ -10,7 +14,8 @@ import { TextField } from '@material-ui/core';
 import { List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core/';
 import SendTwoToneIcon from '@material-ui/icons/SendTwoTone';
 
-export default class ChatList extends Component {
+
+class ChatList extends Component {
     static propTypes = {
         chats: PropTypes.object.isRequired,
         addChat: PropTypes.func.isRequired,
@@ -69,3 +74,11 @@ export default class ChatList extends Component {
         )
     }
 }
+
+const mapStateToProps = ({ chatReducer }) => ({
+    chats: chatReducer.chats,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ addChat }, dispatch);
+
+export default connect (mapStateToProps, mapDispatchToProps) (ChatList);
