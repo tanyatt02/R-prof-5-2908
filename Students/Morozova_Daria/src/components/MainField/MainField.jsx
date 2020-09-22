@@ -9,12 +9,6 @@ import  { sendMessage } from '../../store/actions/messages-actions';
 
 // export default 
 class MainField extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            text: '',
-        }
-    }
 
     sendMessage = (text, sender = 'me') => {
         this.props.sendMessage(text, sender);

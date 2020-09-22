@@ -24,6 +24,7 @@ export default class InputComp extends Component {
 
     sendM = () => {
         this.props.send(this.state.text);
+        //вот здесь this.setState({ text: '' }); чтобы очищать поле
     }
 
     render() {

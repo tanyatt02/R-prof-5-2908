@@ -23,19 +23,17 @@ export default class Layout extends Component {
         return (
             <Fragment >
                 <Header chatId = { this.props.chatId } />
-            <StylesProvider>
-                
-                <div className="d-flex w-100 justify-content-center">
-                    {/* <Header chatId = { this.props.chatId } /> */}
-                    <div className="chatList-wrp">
-                        <ChatList id = { this.props.chatId } />
+                <StylesProvider>                
+                    <div className="d-flex w-100 justify-content-center">
+                        <div className="chatList-wrp">
+                            <ChatList id = { this.props.chatId } />
+                        </div>
+                        <div className="messages-wrp">
+                            <MainField name="Rick"/>
+                            
+                        </div>
                     </div>
-                    <div className="messages-wrp">
-                        <MainField name="Rick"/>
-                        
-                    </div>
-                </div>
-            </StylesProvider>
+                </StylesProvider>
             </Fragment>
         )
     }
