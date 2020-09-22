@@ -22,14 +22,14 @@ export default class Layout extends Component {
 
         return (
             <Fragment >
-                <Header chatId = { this.props.chatId } />
+                <Header chatId = { this.props.chatTitle } />
                 <StylesProvider>                
                     <div className="d-flex w-100 justify-content-center">
                         <div className="chatList-wrp">
-                            <ChatList id = { this.props.chatId } />
+                            <ChatList  />
                         </div>
                         <div className="messages-wrp">
-                            <MainField name="Rick"/>
+                            <MainField name="Me"/>
                             
                         </div>
                     </div>
