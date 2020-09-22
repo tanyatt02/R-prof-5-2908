@@ -1,0 +1,5 @@
+.Layout {}
+h1 {
+    display: flex!important;
+    width: 100%!important;
+}

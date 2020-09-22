@@ -2,35 +2,24 @@ import './style.css';
 import React, { Component, Fragment } from 'react';
 
 import Message from '../Message/Message.jsx';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-export default class MessageField extends Component {
+class MessageField extends Component {
     constructor(props) {
-        super(props);
         this.state = {
             text: '',
-            messages: [
-                {
-                    sender: 'Darth Vader',
-                    text: 'Hello'
-                },
-                {
-                    sender: 'Darth Vader',
-                    text: 'I am your father'
-                },
-                {
-                    sender: null,
-                    text: 'Hello'
-                },
-                {
-                    sender: null,
-                    text: 'Nooooooo'
-                }
-            ]
         }
     }
 
     handleChange = evt => {
-        this.setState({ text: evt.target.value });
+        if (evt.keyCode !== 13) {
+            this.setState({ text: evt.target.value });
+        } else {
+            this.sendMessage();
+        }
+        
+        // this.state.text = evt.target.value // NO REACTIVITY
     }
 
     sendMessage = () => {
@@ -44,28 +33,14 @@ export default class MessageField extends Component {
         });
     }
 
-    componentDidUpdate() {//отвечает бот
-        if (this.state.messages.length % 2 === 1) {  // Остаток от деления на 2
-            setTimeout(() =>
-                this.setState({ 
-                    text: '',
-                    messages: [...this.state.messages, {
-                            sender: 'Робот',
-                            text: `${this.state.text} Не приставай ко мне, я робот!`
-                        } 
-                    ]
-                }),
-            1000);
-        }
-    }
-
     render() {
-        let { messages } = this.state;
-
+        let { messages } = this.props;
+        console.log(messages)
         let contentArray = messages.map((msg, index) => {
             let { text, sender } = msg;
             return <Message text = { text } sender = { sender } key = { index }/>
         });
+
 
         return (
             <div className="d-flex flex-column">
@@ -73,11 +48,23 @@ export default class MessageField extends Component {
                     { contentArray }
                 </div>
                 <div className="controls d-flex">
-                    <input  type="text" value = { this.state.text } onChange = { this.handleChange } />
+                    <input 
+                        type="text" 
+                        value = { this.state.text }
+                        onChange = { this.handleChange }
+                        onKeyUp = { this.handleChange }
+                    />
                     <button onClick = { this.sendMessage }>Send</button>
                 </div>
             </div>
         )
     }
 }
-    
+
+const mapStateToProps = ({ msgReducer }) => ({
+    messages: msgReducer.messages
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({  }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageField);
