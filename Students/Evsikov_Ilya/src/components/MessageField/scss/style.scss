@@ -1,0 +1,39 @@
+.msgField {
+  background-color: #41007d;
+  border-radius: 15px;
+  overflow-y: scroll;
+  max-height: 500px;
+  min-height: 200px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  .chatField {
+    width: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .controls {
+
+    input {
+      background-color: transparent;
+      border: 1px solid #d159f1;
+      border-radius: 15px;
+      outline: none;
+      color: #ffffff;
+      padding-left: 15px;
+    }
+
+    button {
+      background-color: transparent;
+      outline: none;
+      border: none;
+
+      .fa-paper-plane {
+        color: #ffffff;
+      }
+    }
+  }
+}
