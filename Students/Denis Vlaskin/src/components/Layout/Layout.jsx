@@ -7,7 +7,7 @@ import connect from "react-redux/es/connect/connect";
 import MessageField from '../MessageField/MessageField.jsx';
 import ChatList from '../ChatList/ChatList.jsx';
 import Header from '../Header/Header.jsx';
-import { sendMessage } from '../../actions/messageActions';
+import { sendMessage } from '../../store/actions/messageActions';
 
 class Layout extends React.Component {
     static propTypes = {
@@ -20,16 +20,7 @@ class Layout extends React.Component {
         chatId: 1
     }
 
-    // componentDidUpdate(prevProps, prevState) {
-    //     const { messages } = this.props;
-    //     if (Object.keys(messages).length < Object.keys(messages).length &&
-    //         Object.values(messages)[Object.values(messages).length - 1].sender === 'me') {
-    //         setTimeout(() =>
-    //             this.sendMessage('Не приставай ко мне, я робот!', 'bot'), 1000);
-    //     }
-    // }
- 
-    sendMessage = (message, sender) => {
+     sendMessage = (message, sender) => {
         const { chatId } = this.props;
  
         this.props.sendMessage(message, sender);
