@@ -1,6 +1,5 @@
 import update from 'react-addons-update';
-
-import { SEND_MSG } from '../actions/messages-actions';
+import { SEND_MESSAGE } from '../actions/messageActions.js';
 
 const storeMsg = {
     messages: [
@@ -25,7 +24,7 @@ const storeMsg = {
 
 export default (store = storeMsg, action) => {
     switch(action.type) {
-        case SEND_MSG: {
+        case SEND_MESSAGE: {
             let { text, sender } = action;
             let newMsg = { text, sender };
             return update(store, { messages: { $push: [newMsg] } })
