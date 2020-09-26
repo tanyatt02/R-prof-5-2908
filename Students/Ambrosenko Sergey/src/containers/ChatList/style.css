@@ -6,8 +6,9 @@
 }
 
 .chat-link {
-    color: white;
+    color: #ffffff;
     margin: 5px 0 5px 0;
+    cursor: pointer;
 }
 
 .chat-link:hover {
@@ -16,5 +17,9 @@
 }
 
 .chat-link:active {
-    color: white;
+    color: #ffffff;
+}
+
+.chat-link2 {
+    color: rgb(219, 75, 75);
 }
