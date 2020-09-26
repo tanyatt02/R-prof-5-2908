@@ -25,12 +25,6 @@ export default function chatReducer(store = initialStore, action) {
                     sender: action.sender
                }}}
            });
-        //    update(store, {
-        //        chats: { $merge: { [action.chatId]: {
-        //            title: store.chats[action.chatId].title,
-        //            messageList: [...store.chats[action.chatId].messageList, messageId]
-        //        } } },
-        //    });
        }
        case ADD_CHAT: {
            const chatId = Object.keys(store.chats).length + 1;
