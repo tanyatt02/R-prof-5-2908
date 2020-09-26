@@ -1,12 +1,23 @@
-import React from 'react'
+import './style.css';
+import React, { Component } from 'react';
+import PropTypes from "prop-types";
+import { Link } from 'react-router-dom';
 
-const Header = (props) => {
+export default class Header extends Component {
+    static propTypes = {
+        chatId: PropTypes.number,
+    };
+ 
+    static defaultProps = {
+        chatId: 2,
+    };
 
-    return (
-        <div className='header'>
-            <span>Welcome to the chat-messenger</span>
-        </div>
-    )
+    render() {
+        return (
+            <div className="header">
+                <span className="header-title">Ваш собеседник { this.props.chatId }</span>
+                <Link className="profile" to="profile">Профиль</Link>
+            </div>
+        )
+    }
 }
-
-export default Header

@@ -1,25 +1,12 @@
 .msg {
-    min-width: 250px;
-    min-height: 70px;
-    background-color: #e0cdc1;
-    margin: 10px 0;
-    padding: 5px 10px;
-    box-sizing: border-box;
-    border-radius: 15px 15px 15px 0;
-    border:3px solid #663068;
+    background-color: rgb(116, 118, 119);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 18px;
+    margin: 5px;
 }
 
-.msgName {
-    font-family: 'Roboto Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 30px;
-    line-height: 30px;
-    color: #26054d;
-    border-radius: 25px;
-}
-
-.msgText {
-    margin: 0;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 26px;
+.msg-sender {
+    color: rgb(240, 219, 219);
+    font-size: 14px;
 }

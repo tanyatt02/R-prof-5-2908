@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const path = require('path');
 
 module.exports = {
@@ -29,6 +30,7 @@ module.exports = {
                             { "loose": true }
                         ]
                     ]
+                    // preset: ["@babel/preset-env", "@babel/preset-react"]
                 }
             }
         ]
@@ -43,9 +45,13 @@ module.exports = {
             template: path.resolve(__dirname, 'public', 'index.html')
         })
     ],
+    devtool: 'cheap-inline-module-source-map',
     devServer: {
         port: 3300,
         hot: true,
-        open: false
+        open: false,
+        historyApiFallback: {
+            index: 'index.html'
+        }
     }
 }
