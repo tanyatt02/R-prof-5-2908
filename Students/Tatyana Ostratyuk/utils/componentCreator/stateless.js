@@ -5,7 +5,6 @@ module.exports = componentName => {
     const content = `
         import './style.css';
         import React, { Fragment } from 'react';
-        
         export default props => {
             //let { some } = props;
             return (

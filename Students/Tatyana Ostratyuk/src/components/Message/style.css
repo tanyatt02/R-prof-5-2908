@@ -1,5 +1,14 @@
+.test {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height:500px;
+    width: 100%;
+    margin: 10px;
+    overflow-y: auto;
+}
 .msg {
-    width: 520px;
+    width: 100%;
     text-align: center;
     border: 1px solid #a6a6a6;
     padding: 15px 0 0;
@@ -12,3 +21,16 @@
     .msg p {
         color: #212121;
     }
+
+/**/
+.text{
+    font-size: 20px;
+    font-style: italic;
+}
+.msg:hover{
+    background-color: #a6a6a6;
+}
+.name{
+    font-size: 16px;
+    color: darkcyan;
+}
