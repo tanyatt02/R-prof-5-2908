@@ -4,22 +4,20 @@ import ReactDom from 'react-dom';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './layout/css/styles.css';
 
-import Layout from './components/Layout/Layout.jsx';
+import Router from './router.jsx';
+import { BrowserRouter } from 'react-router-dom';
 
-import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
+import { Provider } from 'react-redux';
+import initStore from './utils/store.js';
+
 
 const container = document.getElementById('app');
 
 ReactDom.render(
-    <StylesProvider>
-        <div>
-            <div>
-                <Layout />
-            </div>
-            {/* <div>
-                <MessageField name="Magistr Yoda"/>
-            </div> */}
-        </div>
-    </StylesProvider>,
+    <Provider store={ initStore() }>
+        <BrowserRouter>
+            <Router />
+        </BrowserRouter>
+    </Provider>,
     container
 )

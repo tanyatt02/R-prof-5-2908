@@ -1,0 +1,16 @@
+.message-field{
+    background-color: mediumturquoise;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 50%;
+    width: 100%;
+    padding: 20px;
+ }
+ 
+.button-wrap {
+    width: 100%;
+    display: flex;
+ }
+ 
