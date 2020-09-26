@@ -1,7 +1,19 @@
 .msgField {
   background-color: #41007d;
-  padding: 50px;
   border-radius: 15px;
+  overflow-y: scroll;
+  max-height: 500px;
+  min-height: 200px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  .chatField {
+    width: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 
   .controls {
 
