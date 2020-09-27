@@ -17,14 +17,14 @@ class Profile extends Component {
     render() {
         return (
             <div>
-                Профиль работает!
+                {this.props.login}
             </div>
         )
     }
 }
 
-const mapStateToProps = ({ chatReducer }) => ({
-    chatId: chatReducer.activeChatId,
+const mapStateToProps = ({ profileReducer }) => ({
+    login: profileReducer.login,
 });
 
 export default connect(mapStateToProps)(Profile);

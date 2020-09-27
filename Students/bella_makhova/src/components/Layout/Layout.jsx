@@ -10,10 +10,15 @@
         import {connect} from "react-redux";
         import { setActiveChat } from "../../store/actions/chats-actions";
         import {Link} from "react-router-dom";
+        import Header from "../Header/Header.jsx";
 
         class Layout extends Component {
             constructor(props) {
                 super(props);
+            }
+
+            componentDidMount() {
+                this.props.setActiveChat(this.props.chatId);
             }
 
             componentDidUpdate() {
@@ -24,8 +29,7 @@
 
                 return (
                     <StylesProvider>
-                        <Link to = '/profile'>Profile</Link>
-                        <h1>Chat: { this.props.chatId }</h1>
+                      <Header/>
                         <div className="d-flex w-100 justify-content-center layout">
                             <div>
                                 <ChatList id = { this.props.chatId }/>

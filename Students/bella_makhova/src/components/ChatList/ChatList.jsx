@@ -17,7 +17,7 @@ class ChatList extends Component {
     render() {
         return (
             <Fragment>
-                <div className="ChatList d-flex flex-column">
+                <div className="ChatList d-flex flex-column ml-3">
                     <List>
                         <Link to = '/chat/1'>
                             <Item name="Chat 1" selected={this.props.chatId === 1} />
@@ -25,10 +25,10 @@ class ChatList extends Component {
                         <Link to = '/chat/2'>
                             <Item name="Chat 2" selected={this.props.chatId === 2} />
                         </Link>
+                        <Link to = '/chat/3'>
+                            <Item name="Chat 3" selected={this.props.chatId === 3} />
+                        </Link>
                     </List>
-                    <div>
-                        <ChatsDialog />
-                    </div>
                 </div>
             </Fragment>
         )

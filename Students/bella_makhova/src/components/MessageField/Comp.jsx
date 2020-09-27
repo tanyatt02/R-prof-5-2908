@@ -17,7 +17,7 @@ class MessageField extends Component {
     }
 
     componentDidUpdate() {
-        if (this.props.messages[this.props.messages.length - 1].sender === 'me') {
+        if (this.props.messages.length && this.props.messages[this.props.messages.length - 1].sender === 'me') {
             setTimeout(() =>
                     this.props.sendMessage(
                         'i\'m thinking...',

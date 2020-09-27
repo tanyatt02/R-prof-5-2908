@@ -13,6 +13,10 @@ import PersonIcon from '@material-ui/icons/Person';
 import AddIcon from '@material-ui/icons/Add';
 import Typography from '@material-ui/core/Typography';
 import { blue } from '@material-ui/core/colors';
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import {setActiveChat} from "../../store/actions/chats-actions";
+import {setProfile} from "../../store/actions/profile-actions";
 
 const emails = ['username@gmail.com', 'user02@gmail.com', 'test@lol.net'];
 //documentation https://material-ui.com/ru/styles/api/#makestyles-styles-options-hook
@@ -69,10 +73,9 @@ function SimpleDialog(props) {
 SimpleDialog.propTypes = {
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired,
 };
 
-export default function SimpleDialogDemo() {
+function SimpleDialogDemo(props) {
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
@@ -82,17 +85,27 @@ export default function SimpleDialogDemo() {
 
   const handleClose = (value) => {
     setOpen(false);
-    setSelectedValue(value);
+    props.setProfile(value);
   };
 
   return (
-    <div>
+    <div className="d-flex align-items-center">
       <br />
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open simple dialog
+      <Button
+          variant="outlined"
+          color="primary"
+          onClick={handleClickOpen}>
+        Log in
       </Button>
-      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
-      <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
+      <SimpleDialog selectedValue={props.login} open={open} onClose={handleClose} />
     </div>
   );
 }
+
+const mapStateToProps = ({ profileReducer }) => ({
+  login: profileReducer.login,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ setProfile }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SimpleDialogDemo);

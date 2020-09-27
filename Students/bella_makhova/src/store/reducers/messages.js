@@ -27,7 +27,8 @@ const storeMsg = {
                 sender: 'Darth Vader',
                 text: 'Hello Redux'
             },
-        ]
+        ],
+        3: []
     }
 }
 
