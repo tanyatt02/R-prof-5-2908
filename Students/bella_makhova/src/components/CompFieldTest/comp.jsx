@@ -7,7 +7,7 @@ export default class FieldComp extends Component {
     constructor(props) {
         super(props);
     }
-    
+
     render() {
         let { messages } = this.props;
 

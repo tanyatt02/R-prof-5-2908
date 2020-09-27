@@ -9,18 +9,21 @@ import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 
 import Item from '../ChatListItem/ChatListItem.jsx';
+import {bindActionCreators} from "redux";
+import {sendMessage} from "../../store/actions/messages-actions";
+import {connect} from "react-redux";
 
-export default class ChatList extends Component {
+class ChatList extends Component {
     render() {
         return (
             <Fragment>
                 <div className="ChatList d-flex flex-column">
                     <List>
                         <Link to = '/chat/1'>
-                            <Item name="Chat 1" />
+                            <Item name="Chat 1" selected={this.props.chatId === 1} />
                         </Link>
                         <Link to = '/chat/2'>
-                            <Item name="Chat 2" />
+                            <Item name="Chat 2" selected={this.props.chatId === 2} />
                         </Link>
                     </List>
                     <div>
@@ -31,4 +34,9 @@ export default class ChatList extends Component {
         )
     }
 }
-    
+
+const mapStateToProps = ({ chatReducer }) => ({
+    chatId: chatReducer.activeChatId,
+});
+
+export default connect(mapStateToProps)(ChatList);

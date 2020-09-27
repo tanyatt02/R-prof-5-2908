@@ -9,7 +9,7 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'dist'),
-        publicPath: '',
+        publicPath: '/',
         filename: path.join('js', 'bundle.js')
     },
     target: 'web',
@@ -48,6 +48,7 @@ module.exports = {
     devServer: {
         port: 3333,
         hot: true,
-        open: false
+        open: false,
+        historyApiFallback: { index: '/' }
     }
 }
