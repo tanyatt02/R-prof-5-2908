@@ -13,7 +13,7 @@ import  { sendMessage } from '../../store/actions/messages-actions';
 class MessageField extends Component {
 
     send = (text, sender = 'me') => {
-        this.props.sendMessage(text, sender);
+        this.props.sendMessage(text, sender, this.props.chatId);
     }
 
     componentDidUpdate() {
@@ -21,7 +21,8 @@ class MessageField extends Component {
             setTimeout(() =>
                     this.props.sendMessage(
                         'i\'m thinking...',
-                        'bot'
+                        'bot',
+                        this.props.chatId
                     ),
                 700
             );
@@ -39,9 +40,9 @@ class MessageField extends Component {
     }
 }
 
-
-const mapStateToProps = ({ msgReducer }) => ({
-    messages: msgReducer.messages
+const mapStateToProps = ({ msgReducer, chatReducer }) => ({
+    chatId: chatReducer.activeChatId,
+    messages: msgReducer.messages[chatReducer.activeChatId]
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);

@@ -7,9 +7,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 //useStyles()
 
 export default props => {
-    let { name } = props;
+    let { name, selected } = props;
     return (
-        <ListItem button>
+        <ListItem button selected={ selected }>
             <PersonOutlineIcon />
             <ListItemText primary = { name } />
         </ListItem>

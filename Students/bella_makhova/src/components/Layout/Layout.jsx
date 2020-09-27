@@ -6,21 +6,25 @@
 
         import ChatList from '../ChatList/ChatList.jsx';
         import MessageField from '../Comp/Comp.jsx';
+        import {bindActionCreators} from "redux";
+        import {connect} from "react-redux";
+        import { setActiveChat } from "../../store/actions/chats-actions";
+        import {Link} from "react-router-dom";
 
-        export default class Layout extends Component {
-
-            static propTypes = {
-                chatId: PropTypes.number
+        class Layout extends Component {
+            constructor(props) {
+                super(props);
             }
 
-            static defaultProps = {
-                chatId: 1
+            componentDidUpdate() {
+                this.props.setActiveChat(this.props.chatId);
             }
-        
+
             render() {
-                
+
                 return (
                     <StylesProvider>
+                        <Link to = '/profile'>Profile</Link>
                         <h1>Chat: { this.props.chatId }</h1>
                         <div className="d-flex w-100 justify-content-center layout">
                             <div>
@@ -34,4 +38,7 @@
                 )
             }
         }
-    
+
+        const mapDispatchToProps = dispatch => bindActionCreators({ setActiveChat }, dispatch);
+
+        export default connect(null, mapDispatchToProps)(Layout);

@@ -11,14 +11,14 @@ export default class InputComp extends Component {
         this.state = {
             text: ''
         }
+        this.textInput = React.createRef();
     }
 
     handleChange = evt => {
-        evt.preventDefault();
         if (evt.keyCode !== 13) {
             this.setState({ text: evt.target.value });
         } else {
-            this.props.send(this.state.text);
+            this.sendMessage();
         }
     }
 
@@ -26,7 +26,7 @@ export default class InputComp extends Component {
         if (!!this.state.text) {
             this.props.send(this.state.text);
             this.setState({ text: '' });
-
+            this.textInput.current.focus();
         }
     }
 
@@ -43,6 +43,7 @@ export default class InputComp extends Component {
                     onKeyUp = { this.handleChange }
                     autoFocus
                     autoComplete="off"
+                    inputRef={this.textInput}
                 />
                     <IconButton
                         onClick = { this.sendMessage }
