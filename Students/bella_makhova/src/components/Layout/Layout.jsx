@@ -22,7 +22,7 @@
                 return (
                     <StylesProvider>
                         <h1>Chat: { this.props.chatId }</h1>
-                        <div className="d-flex w-100 justify-content-center">
+                        <div className="d-flex w-100 justify-content-center layout">
                             <div>
                                 <ChatList id = { this.props.chatId }/>
                             </div>

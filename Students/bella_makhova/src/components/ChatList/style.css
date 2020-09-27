@@ -1,1 +1,5 @@
-.ChatList {}
+.ChatList {
+    margin: 0;
+    padding: 18px 16px 10px;
+    text-decoration: none;
+}

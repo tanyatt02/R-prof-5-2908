@@ -14,6 +14,7 @@ export default class InputComp extends Component {
     }
 
     handleChange = evt => {
+        evt.preventDefault();
         if (evt.keyCode !== 13) {
             this.setState({ text: evt.target.value });
         } else {
@@ -34,13 +35,14 @@ export default class InputComp extends Component {
 
         return (
             <div className="controls d-flex mt-3">
-                <form noValidate autoComplete="off">
+                <div className='d-flex input'>
                 <TextField id="standard-basic" label="Message"
                     type="text"
                     value = { text }
                     onChange = { this.handleChange }
                     onKeyUp = { this.handleChange }
                     autoFocus
+                    autoComplete="off"
                 />
                     <IconButton
                         onClick = { this.sendMessage }
@@ -48,7 +50,7 @@ export default class InputComp extends Component {
                         color="primary">
                         <SendIcon />
                     </IconButton>
-                </form>
+                </div>
             </div>
         )
     }

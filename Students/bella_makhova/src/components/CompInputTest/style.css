@@ -1,3 +1,9 @@
-.red {
-    color: red
+button:active,
+button:focus {
+    outline: none;
+}
+
+.controls .MuiFormControl-root,
+.controls .input {
+    width: 100%;
 }

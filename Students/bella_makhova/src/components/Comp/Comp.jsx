@@ -31,7 +31,7 @@ class MessageField extends Component {
 
     render() {
         return (
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column compField">
                <FieldComp messages = { this.props.messages } />
                <InputComp send = { this.send } />
             </div>

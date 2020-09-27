@@ -17,8 +17,8 @@ export default class FieldComp extends Component {
         });
 
         return (
-            <div className="test">
-                <div>
+            <div className="field">
+                <div className="d-flex flex-column align-content-end">
                     { contentArray }
                 </div>
             </div>
