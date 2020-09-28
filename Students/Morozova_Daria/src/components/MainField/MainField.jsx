@@ -9,14 +9,8 @@ import  { sendMessage } from '../../store/actions/messages-actions';
 
 // export default 
 class MainField extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            text: '',
-        }
-    }
 
-    sendMessage = (text, sender = 'me') => {
+    send = (text, sender = 'me') => {
         this.props.sendMessage(text, sender);
     }
 
@@ -39,14 +33,14 @@ class MainField extends Component {
         return (
             <div className="d-flex flex-column layout">
                 <FieldComp messages = { this.props.messages } />
-                <InputComp send = { this.sendMessage } />
+                <InputComp send = { this.send } />
             </div>     
         )
     }
 }
 
-const mapStateToProps = ({ messageReducer }) => ({
-    messages: messageReducer.messages
+const mapStateToProps = ({ msgReducer }) => ({
+    messages: msgReducer.messages
 })
 
 //где? мапдиспатчтупропс?

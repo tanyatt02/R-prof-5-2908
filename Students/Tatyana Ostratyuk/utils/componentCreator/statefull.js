@@ -1,3 +1,4 @@
+  
 const fs = require('fs');
 const path = require('path');
 
@@ -5,7 +6,6 @@ module.exports = componentName => {
     const content = `
         import './style.css';
         import React, { Component, Fragment } from 'react';
-        
         export default class ${componentName} extends Component {
             constructor(props) {
                 super(props);

@@ -1,0 +1,18 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: MuseoModerno;
+}
+
+h1 {
+    text-align: center;
+    color: #d159f1;
+}
+
+.container {
+    background-color: #330360;
+}
+
+.main {
+
+}

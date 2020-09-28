@@ -24,6 +24,7 @@ export default class InputComp extends Component {
 
     sendM = () => {
         this.props.send(this.state.text);
+        this.setState({ text: '' });
     }
 
     render() {

@@ -1,3 +1,4 @@
+import React from 'react';
 import update from 'react-addons-update';
 import { SEND_MESSAGE } from '../Actions/messageActions';
 import { ADD_CHAT } from "../Actions/chatActions";
@@ -8,6 +9,7 @@ const initialStore = {
             2: { title: 'Ростелеком', messageList: [2] },
             3: { title: 'Сбербанк', messageList: [3] },
         },
+    chatLink: React.createRef(),
 };
 
 export default function chatReducer(store = initialStore, action) {
