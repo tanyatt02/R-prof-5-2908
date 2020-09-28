@@ -93,10 +93,15 @@ class MessageField extends React.Component {
     }
 }
 
-const mapStateToProps = ({ chatReducer }) => ({
-    chats: chatReducer.chats,
- });
+// const mapStateToProps = ({ chatReducer, msgReducer }) => ({
+//     chats: chatReducer.chats,
+//     messages: msgReducer.messages,
+//  });
  
+ const mapStateToProps = ({ chatReducer }) => ({
+    chats: chatReducer.chats
+ });
+
  const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
  
  export default connect(mapStateToProps, mapDispatchToProps)(MessageField);
