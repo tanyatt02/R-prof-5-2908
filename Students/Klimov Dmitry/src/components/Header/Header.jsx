@@ -3,19 +3,16 @@
         import React, { Component, Fragment } from 'react';
 
         export default class Header extends Component {
-            constructor(props) {
-                super(props);
-                this.state = {
-                    //
-                }
-            }
+            
         
             render() {
                 // let { some } = this.state;
         
                 return (
                     <Fragment>
-                        <div className="Header"></div>
+                        <div className="header">
+                            <h1> Chat { this.props.chatId }</h1>
+                        </div>
                     </Fragment>
                 )
             }

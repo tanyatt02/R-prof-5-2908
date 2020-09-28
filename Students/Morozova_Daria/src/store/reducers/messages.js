@@ -9,7 +9,7 @@ const storeMsg = {
         },
         {
             sender: 'Petr',
-            text: 'Hello!',
+            text: 'Hello Redux!',
         },
         {
             sender: null,

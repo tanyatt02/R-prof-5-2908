@@ -1,56 +1,36 @@
 import './style.css';
 
-import React, { Component } from 'react';
+import React from 'react';
+import { Component } from 'react';
+import InputComp from '../CompInputTest/comp.jsx';
+import FieldComp from '../CompFieldTest/comp.jsx';
 
-export default class Comp extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            test: true
-        }
-    }
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-    handleClick = () => {
-        // console.log(this.state.test)
-        this.setState({
-            test: !this.state.test
-        })
+import  { sendMessage } from '../../store/actions/messages-actions';
+
+class MessageField extends Component {
+
+    send = (text, sender = 'Darth Vader') => {
+        this.props.sendMessage(text, sender);
     }
 
     render() {
-        let { test } = this.state;
-
         return (
-            <div className="test">
-                <button onClick={ this.handleClick }>Toggle</button>
-
-                <br/>
-
-                {
-                    test && 
-                    <div>
-                        <h1>Test = true</h1>
-                    </div>
-                }
-
-                {
-                    !test && 
-                    <div>
-                        <h1>Test = false</h1>
-                    </div>
-                }
+            <div className="d-flex flex-column">
+               <FieldComp messages = { this.props.messages } />
+               <InputComp send = { this.send } />
             </div>
         )
     }
 }
-// export default props => {
-//     // let name = props.name;
-//     let { name } = props;
 
-//     return (
-//         <div className="d-flex flex-column justify-content-center align-items-center">
-//             <h2>Something from react-component</h2>
-//             <p className="red">Hello { name }</p>
-//         </div>
-//     )
-// }
+
+const mapStateToProps = ({ msgReducer }) => ({
+    messages: msgReducer.messages
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(MessageField);
