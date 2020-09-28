@@ -6,12 +6,14 @@ import Message from '../Message/Message.jsx';
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import connect from "react-redux/es/connect/connect";
+import CircularProgress from 'material-ui/CircularProgress';
+import { sendMessage, loadMessages } from '../../store/actions/messageActions.js';
 
 class MessageField extends React.Component {
     constructor(props) {
         super(props);
-        this.textInput = React.createRef();
-        this.msgField = React.createRef();
+        // this.textInput = React.createRef();
+        // this.msgField = React.createRef();
     }
 
     static propTypes = {
@@ -19,6 +21,7 @@ class MessageField extends React.Component {
         messages: PropTypes.object.isRequired,
         chats: PropTypes.object.isRequired,
         sendMessage: PropTypes.func.isRequired,
+        isLoading: PropTypes.bool.isRequired,
     };
 
     state = {
@@ -46,16 +49,22 @@ class MessageField extends React.Component {
 
     // Ставим фокус на <input> при монтировании компонента
     componentDidMount() {
-        this.textInput.current.focus();
-        this.msgField.current.scrollTop = this.msgField.current.scrollHeight;
+        // this.textInput.current.focus();
+        // this.msgField.current.scrollTop = this.msgField.current.scrollHeight;
+        fetch('/api/messages.json').then(body => body.json()).then(json => { json.forEach(msg => { this.props.sendMessage(msg.id, msg.text, msg.sender, msg.chatId);})
+        });
+        this.props.loadMessages();
     }
 
     componentDidUpdate(prevProps, prevState) {
-        this.textInput.current.focus();
-        this.msgField.current.scrollTop = this.msgField.current.scrollHeight;
+        // this.textInput.current.focus();
+        // this.msgField.current.scrollTop = this.msgField.current.scrollHeight;
     }
     
     render() {
+        if (this.props.isLoading) {
+            return <CircularProgress />
+        }
         const { chatId, messages, chats } = this.props;
 
         let contentArray = chats[chatId].messageList.map((messageId) => (
@@ -73,7 +82,7 @@ class MessageField extends React.Component {
                 <div className="controls d-flex pt-3 align-items-center align-self-end" >
                     <TextField
                         id="standard-basic"
-                        ref={ this.textInput }
+                        // ref={ this.textInput }
                         fullWidth={ true }
                         name="input"
                         hintText="Message"
@@ -93,15 +102,12 @@ class MessageField extends React.Component {
     }
 }
 
-// const mapStateToProps = ({ chatReducer, msgReducer }) => ({
-//     chats: chatReducer.chats,
-//     messages: msgReducer.messages,
-//  });
- 
- const mapStateToProps = ({ chatReducer }) => ({
-    chats: chatReducer.chats
+const mapStateToProps = ({ chatReducer, messageReducer }) => ({
+    chats: chatReducer.chats,
+    messages: messageReducer.messages,
+    isLoading: messageReducer.isLoading,
  });
 
- const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage, loadMessages }, dispatch);
  
- export default connect(mapStateToProps, mapDispatchToProps)(MessageField);
+export default connect(mapStateToProps, mapDispatchToProps)(MessageField);
