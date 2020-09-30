@@ -1,12 +1,12 @@
 [
     {
         "id": 1,
-        "title": "Games",
+        "title": "Lorem",
         "messageList": [
             {
                 "id": 1,
                 "text": "Привет",
-                "sender": "me"
+                "sender": "Me"
             },
             {
                 "id": 2,
@@ -17,12 +17,12 @@
     },
     {
         "id": 2,
-        "title": "Trips",
+        "title": "Cheetos",
         "messageList": [
             {
                 "id": 3,
-                "text": "Здравствуйте!",
-                "sender": "me"
+                "text": "Hello!",
+                "sender": "Me"
             },
             {
                 "id": 4,
@@ -33,12 +33,12 @@
     },
     {
         "id": 3,
-        "title": "Business",
+        "title": "Doors",
         "messageList": [
             {
                 "id": 5,
-                "text": "Приветствую",
-                "sender": "me"
+                "text": "Hi",
+                "sender": "Petr"
             },
             {
                 "id": 6,
