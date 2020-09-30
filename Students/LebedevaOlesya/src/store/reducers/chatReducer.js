@@ -1,15 +1,12 @@
 import update from 'react-addons-update';
 import { SEND_MESSAGE } from '../actions/messageActions';
 import { ADD_CHAT } from "../actions/chatActions";
+import { START_CHATS_LOADING, SUCCESS_CHATS_LOADING, ERROR_CHATS_LOADING } from '../actions/chatActions.js';
 
 const initialStore = {
-   chats: {
-        1: {title: 'Чат 1', messageList: [1,4]},
-        2: {title: 'Чат 2', messageList: [2,5]},
-        3: {title: 'Чат 3', messageList: [3,6]},
-       }
+   chats: {},
+   isLoading: true,
 };
-
 
 export default function chatReducer(store = initialStore, action) {
    switch (action.type) {
@@ -26,10 +23,26 @@ export default function chatReducer(store = initialStore, action) {
            return update(store, {
               chats: { $merge: {
                   [chatId]: {
-                      title: action.title, messageList: []
+                      title: action.title, 
+                      messageList: []
               } } },
            });
        }
+        case START_CHATS_LOADING: {
+            return update(store, {
+               isLoading: { $set: true },
+            });
+        }
+        case SUCCESS_CHATS_LOADING: {
+            return update(store, {
+                messages: { $set: action.payload.entities.messages },
+            });
+        }
+        case ERROR_CHATS_LOADING: {
+            return update(store, {
+                isLoading: { $set: false },
+            });
+        }
        default:
            return store;
    }

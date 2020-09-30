@@ -42,10 +42,10 @@ const useStyles = makeStyles({
   },
 });
 
-function SimpleDialog(props) {
+export default function ContactsList(props) {
   const classes = useStyles();
   const { onClose, selectedValue, open } = props;
-
+  
   const handleClose = () => {
     onClose(selectedValue);
   };
@@ -53,7 +53,7 @@ function SimpleDialog(props) {
   const handleListItemClick = (value) => {
     onClose(value);
   };
-
+  
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
       <DialogTitle id="simple-dialog-title">Выбрать чат</DialogTitle>
@@ -68,46 +68,7 @@ function SimpleDialog(props) {
             <ListItemText primary={email} className={classes.testClass} />
           </ListItem>
         ))}
-
-        <ListItem autoFocus button onClick={() => handleListItemClick('addAccount')}>
-          <ListItemAvatar>
-            <Avatar>
-              <AddIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Add chat" />
-        </ListItem>
       </List>
     </Dialog>
-  );
-}
-
-SimpleDialog.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired,
-};
-
-export default function SimpleDialogDemo() {
-  const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
-  const classes = useStyles();
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (value) => {
-    setOpen(false);
-    setSelectedValue(value);
-  };
-
-  return (
-    <div>
-      {/* <Typography variant="subtitle1">Current Chat: {selectedValue}</Typography>
-      <br /> */}
-      <Button className={classes.root} onClick={handleClickOpen}>Открыть список чатов</Button>
-      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
-    </div>
   );
 }
