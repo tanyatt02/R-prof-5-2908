@@ -13,13 +13,13 @@
     },
     { 
         "id": 3,
-        "chatId": 3,
+        "chatId": 2,
         "text": "Сообщение из API №3", 
         "sender": "Маша Машина" 
     },
     { 
         "id": 4,
-        "chatId": 1,  
+        "chatId": 3,
         "text": "Сообщение из API №4", 
         "sender": "Миша Машин" 
     }

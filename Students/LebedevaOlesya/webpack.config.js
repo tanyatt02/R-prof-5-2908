@@ -49,6 +49,14 @@ module.exports = {
         port: 3300,
         hot: true,
         open: false,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3333',
+                pathRewrite: { '^/api' : '' },
+                secure: false,
+                changeOrigin: true
+            }
+        },
         historyApiFallback: {
             index: 'index.html'
         }

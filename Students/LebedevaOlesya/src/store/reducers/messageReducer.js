@@ -1,9 +1,6 @@
 import update from 'react-addons-update';
-import { SEND_MESSAGE,
-    START_MESSAGES_LOADING,
-    SUCCESS_MESSAGES_LOADING,
-    ERROR_MESSAGES_LOADING,
-} from '../actions/messageActions.js';
+import { SEND_MESSAGE, START_MESSAGES_LOADING, SUCCESS_MESSAGES_LOADING, ERROR_MESSAGES_LOADING } from '../actions/messageActions.js';
+// import { START_CHATS_LOADING, SUCCESS_CHATS_LOADING, ERROR_CHATS_LOADING } from '../actions/chatActions.js';
 
 const initialStore  = {
     messages: {},
